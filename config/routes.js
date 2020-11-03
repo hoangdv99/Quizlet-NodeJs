@@ -32,6 +32,7 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-
-
+  '/create-set': {view: 'pages/create-set'},
+  '/profile/sets': {view: 'pages/profile-sets'},
+  '/profile/folders': {view: 'pages/profile-folders'}
 };
