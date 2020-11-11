@@ -1,26 +1,112 @@
-<div class="pcoded-main-container">
-    <div class="pcoded-wrapper">
-        <div class="pcoded-content">
-            <div class="page-header card">
-                <div class="row align-items-end">
-                    <div class="col-lg-8">
-                        <div class="page-header-title">
-                            <h3>Create a new study set</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="page-header-breadcrumb">
-                            <!--Create button-->
-                        </div>
-                    </div>
+<div class="pcoded-content">
+
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-10">
+                <div class="page-header-title">
+                    <i class="feather icon-file-plus bg-c-blue"></i>
+                    <h5>Create a new study set</h5>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
 
-            <div class="pcoded-inner-content">
-                <div class="main-body">
-                    <div class="page-wrapper">
-                        <div class="page-body">
-                            <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="card">
+
+                                <div class="card-block">
+                                    <form id="main" method="" action="">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter a title like Biology - Chapter 22: Evolution">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" placeholder="Add a description">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2">Visible</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-radio">
+                                                    <div class="radio radiofill radio-primary radio-inline">
+                                                        <label>
+                                                            <input type="radio" name="member" value="public"
+                                                                data-bv-field="member">
+                                                            <i class="helper"></i>Public
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio radiofill radio-primary radio-inline">
+                                                        <label>
+                                                            <input type="radio" name="member" value="private"
+                                                                data-bv-field="member">
+                                                            <i class="helper"></i>Private
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <span class="messages"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <!-- <label class="col-sm-1 col-form-label">1</label> -->
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control" placeholder="Term">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Definition">
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-1">
+                                                        <button id="remove-row"
+                                                        class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i
+                                                            class="icofont icofont-trash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <!-- <label class="col-sm-1 col-form-label">1</label> -->
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control" placeholder="Term">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Definition">
+                                                    </div>
+                                                    
+                                                    <div class="col-sm-1">
+                                                        <button id="remove-row"
+                                                        class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i
+                                                            class="icofont icofont-trash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="add-rows"></div>
+                                        <div class="row">
+                                            <div class="col-sm-5"></div>
+                                            <div class="col-sm-5">
+                                                <button id="add-row" type="button" class="btn waves-effect waves-light btn-success"><i class="icofont icofont-plus"></i>ADD CARD</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
 
                         </div>
@@ -28,9 +114,3 @@
                 </div>
             </div>
         </div>
-
-        <div id="styleSelector">
-        </div>
-
-    </div>
-</div>

@@ -19,7 +19,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  'GET /': { view: 'pages/homepage' },
 
 
   /***************************************************************************
@@ -32,7 +32,7 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-  '/create-set': {view: 'pages/create-set'},
-  '/profile/sets': {view: 'pages/profile-sets'},
-  '/profile/folders': {view: 'pages/profile-folders'}
+  'GET /create-set': {view: 'pages/create-set'},
+  'GET /profile': {view: 'pages/profile'},
+  'GET /profile/folders': {view: 'pages/profile-folders'}
 };
