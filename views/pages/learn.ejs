@@ -61,7 +61,7 @@
             <nav class="navbar header-navbar pcoded-header " header-theme="theme6">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo" logo-theme="theme6">
-                        <a href="/">
+                        <a href="index.html">
                             <img class="img-fluid" src="png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
@@ -106,13 +106,26 @@
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                         
+                                        <li>
+                                            <a href="#!">
+                                                <i class="feather icon-settings"></i> Settings
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
                                         </li>
-                                    
+                                        <li>
+                                            <a href="email-inbox.html">
+                                                <i class="feather icon-mail"></i> My Messages
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="auth-lock-screen.html">
+                                                <i class="feather icon-lock"></i> Lock Screen
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="auth-sign-in-social.html">
                                                 <i class="feather icon-log-out"></i> Logout
@@ -131,127 +144,78 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
+
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="/" class="waves-effect waves-dark">
+                                        <a href="/sets" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-home"></i>
+                                                <i class="feather icon-chevron-left"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Home</span>
+                                            <span class="pcoded-mtext">Back to set page</span>
                                         </a>
                                     </li>
+
                                     <li class=" ">
-                                        <a href="/profile#created" class="waves-effect waves-dark left-nav-menu">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-file"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Sets</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="/profile#folders" class="waves-effect waves-dark left-nav-menu">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-folder"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Folders</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
-                                            data-toggle="modal" data-target="#create-folder">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-plus"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Create a folder</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="/profile#classes" class="waves-effect waves-dark left-nav-menu">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-book"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Classes</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
-                                            data-toggle="modal" data-target="#create-class">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-plus"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Create a class</span>
-                                        </a>
+                                        <div class="pcoded-navigation-label">
+                                            <p class="text-md-center">Remaining </p>
+                                            <p class="text-md-center">50 </p>
+                                            <hr>
+                                            <p class="text-md-center">Familiar <span><i
+                                                        class="feather icon-check"></i></span></p>
+                                            <p class="text-md-center">50</p>
+                                            <hr>
+                                            <p class="text-md-center">Known Well <span><i
+                                                        class="feather icon-check"></i>
+                                                    <i class="feather icon-check"></i></span></p>
+                                            <p class="text-md-center">10</p>
+                                            <hr>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
-                    <div class="modal fade" id="create-folder" tabindex="-1" role="dialog"
-                        aria-labelledby="create-folder" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Create a new folder</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Title</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
+                    <div class="pcoded-content">
+                        <div class="page-header card">
+                            <div class="row align-items-end">
+                                <div class="col-lg-8">
+                                    <div class="page-header-title">
+                                        <i class="feather icon-book bg-c-blue"></i>
+                                        <div class="d-inline">
+                                            <h5>Learn</h5>
+                                            <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Create</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="create-class" tabindex="-1" role="dialog"
-                        aria-labelledby="create-class" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Create a new class</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Class name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Create</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%- body %>
 
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="card">
+                                <div class="card-block" id="question-container">
+                                    <div id="question">use code<code> modal-lg, modal-sm</code> to use large and
+                                        small popup modal.</div>
+                                    <br>
+                                    <br>
+                                    <div class="row col-sm-12" id="answer-buttons">
+                                        <div class="col-sm-3">
+                                            <button type="button" class="btn btn-lg btn-default waves-effect">Answer 1</button>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="button" class="btn btn-lg btn-default waves-effect">Answer 1</button>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="button" class="btn btn-lg btn-default waves-effect">Answer 1</button>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="button" class="btn btn-lg btn-default waves-effect">Answer 1</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div id="styleSelector">
                     </div>
 

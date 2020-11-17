@@ -34,5 +34,9 @@ module.exports.routes = {
   ***************************************************************************/
   'GET /create-set': {view: 'pages/create-set'},
   'GET /profile': {view: 'pages/profile'},
-  'GET /profile/folders': {view: 'pages/profile-folders'}
+  'GET /folders': {view: 'pages/folder'},
+  'GET /sets': {view: 'pages/set', locals: {layout: null}},
+  'GET /learn': {view: 'pages/learn', locals: {layout: null}},
+  'GET /sign-in' :{view: 'pages/sign-in', locals: {layout: null}},
+  'GET /sign-up' :{view: 'pages/sign-up', locals: {layout: null}}
 };

@@ -7,11 +7,11 @@ $("#add-row").on('click', function(){
     html += '<div class="col-sm-5">'
     html += '<input type="text" class="form-control" placeholder="Term">'
     html += '</div>';
-    html += '<div class="col-sm-5">'
+    html += '<div class="col-sm-6">'
     html += '<input type="text" class="form-control" placeholder="Definition">';
     html += '</div>';
     html += '<div class="col-sm-1">'
-    html += '<button id="remove-row" class="btn btn-sm waves-effect waves-dark btn-danger btn-outline-danger"><i class="icofont icofont-trash"></i></button>';
+    html += '<button id="remove-row" class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i class="icofont icofont-trash"></i></button>';
     html += '</div>';
     html += '</div>';
     html += '</div>';

@@ -61,7 +61,7 @@
             <nav class="navbar header-navbar pcoded-header " header-theme="theme6">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo" logo-theme="theme6">
-                        <a href="/">
+                        <a href="index.html">
                             <img class="img-fluid" src="png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
@@ -106,13 +106,26 @@
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                         
+                                        <li>
+                                            <a href="#!">
+                                                <i class="feather icon-settings"></i> Settings
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
                                         </li>
-                                    
+                                        <li>
+                                            <a href="email-inbox.html">
+                                                <i class="feather icon-mail"></i> My Messages
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="auth-lock-screen.html">
+                                                <i class="feather icon-lock"></i> Lock Screen
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="auth-sign-in-social.html">
                                                 <i class="feather icon-log-out"></i> Logout
@@ -131,127 +144,176 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
+                                <div class="pcoded-navigation-label">STUDY</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="/" class="waves-effect waves-dark">
+                                        <a href="#" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-home"></i>
+                                                <i class="feather icon-copy"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Home</span>
+                                            <span class="pcoded-mtext">Flashcards</span>
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="/profile#created" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="#" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-file"></i>
+                                                <i class="feather icon-book"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Sets</span>
+                                            <span class="pcoded-mtext">Learn</span>
                                         </a>
                                     </li>
                                     <li class=" ">
                                         <a href="/profile#folders" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-folder"></i>
+                                                <i class="feather icon-edit"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Folders</span>
+                                            <span class="pcoded-mtext">Test</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
-                                            data-toggle="modal" data-target="#create-folder">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-plus"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Create a folder</span>
-                                        </a>
-                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label">PLAY</div>
+                                <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="/profile#classes" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="#" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-book"></i>
+                                                <i class="feather icon-search"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Classes</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
-                                            data-toggle="modal" data-target="#create-class">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-plus"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Create a class</span>
+                                            <span class="pcoded-mtext">Match</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
-                    <div class="modal fade" id="create-folder" tabindex="-1" role="dialog"
-                        aria-labelledby="create-folder" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Create a new folder</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Title</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Create</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="create-class" tabindex="-1" role="dialog"
-                        aria-labelledby="create-class" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Create a new class</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Class name</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Create</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%- body %>
+                    <div class="pcoded-content">
 
+                        <div class="page-header card">
+                            <div class="row align-items-end">
+                                <div class="col-lg-9">
+                                    <div class="page-header-title">
+                                        <i class="feather icon-file bg-c-blue"></i>
+                                        <div class="d-inline">
+                                            <h5>Set 1</h5>
+                                            <span>3 sets</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
+                                            class="icofont icofont-plus"></i></button>
+                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
+                                            class="icofont icofont-learn"></i></button>
+                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
+                                            class="icofont icofont-edit"></i></button>
+                                    <button class="btn waves-effect waves-light btn-danger btn-icon"><i
+                                            class="icofont icofont-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+
+                                        <div id="carouselExampleControls" class="carousel" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <div class="row col-sm-12">
+                                                        <div class="col-sm-2"></div>
+
+                                                        <!-- <div class="card mb-3"> -->
+                                                            <div class="flip-card">
+                                                                <div class="flip-card-inner">
+                                                                    <div class="card flip-card-front">
+                                                                        <p class="card-text">Hello</p>
+                                                                    </div>
+                                                                    <div class="card flip-card-back">
+                                                                        <p class="card-text">Hoangfz</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <!-- </div> -->
+
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="carousel-item">
+                                                    <div class="row col-sm-12">
+                                                        <div class="col-sm-2"></div>
+                                                        <div class="col-sm-8">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h5>Hello 1</h5>
+                                                                </div>
+                                                                <div class="card-block">
+                                                                    <img class="d-block w-100"
+                                                                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).jpg"
+                                                                        alt="Second slide">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-2"></div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleControls"
+                                                role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExampleControls"
+                                                role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                        <br>
+                                        <h4 class="font-weight-bold">Terms in this set (90)</h4>
+                                        <br>
+                                        <h5 class="font-weight-bold text-warning">Studied(20)</h5>
+                                        <br>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row col-sm-12">
+                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
+                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
+                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card-block">
+                                                <div class="row col-sm-12">
+                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
+                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
+                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h5 class="font-weight-bold text-primary">Not studied(20)</h5>
+                                        <br>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row col-sm-12">
+                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
+                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
+                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card-block">
+                                                <div class="row col-sm-12">
+                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
+                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
+                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div id="styleSelector">
                     </div>
 
@@ -348,6 +410,13 @@
   gtag('config', 'UA-23581568-13');
 </script>
     <script src="js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
+    <script>
+        $('.flip-card').on('click',
+            function () {
+                $(this).toggleClass('flipped')
+            }
+        )
+    </script>
 </body>
 
 <!-- Mirrored from colorlib.com/polygon/admindek/default/dashboard-crm.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Dec 2019 16:08:32 GMT -->
