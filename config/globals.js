@@ -48,5 +48,44 @@ module.exports.globals = {
   ****************************************************************************/
 
   sails: true,
-
+  jwtSecret : 'bdYYvfl3RQ'
 };
+
+module.exports.PrivacyConst = {
+  Public: 1,
+  Private: 2,
+  getName: (privacy)=>{
+    var name = '';
+    switch(privacy){
+      case 1:
+        name = 'Public';
+        break;
+      case 2:
+        name = 'Private';
+        break;
+    }
+    return name;
+  }
+}
+
+module.exports.CardStatus = {
+  New: 1,
+  Seen: 2,
+  Remembered: 3,
+
+  getName: (status)=>{
+    switch(status){
+      case 1:
+        name = 'New';
+        break;
+      case 2:
+        name: 'Seen';
+        break;
+      case 3:
+        name: 'Remembered';
+        break;
+    }
+    return name;
+  }
+  
+}
