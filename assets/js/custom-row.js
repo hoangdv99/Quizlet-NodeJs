@@ -5,13 +5,13 @@ $("#add-row").on('click', function(){
     html += '<div class="card-block">';
     html += '<div class="row align-items-end">';
     html += '<div class="col-sm-5">'
-    html += '<input type="text" class="form-control" placeholder="Term">'
+    html += '<input type="text" class="form-control" placeholder="Term" name="term">'
     html += '</div>';
     html += '<div class="col-sm-6">'
-    html += '<input type="text" class="form-control" placeholder="Definition">';
+    html += '<input type="text" class="form-control" placeholder="Definition" name="definition">';
     html += '</div>';
     html += '<div class="col-sm-1">'
-    html += '<button id="remove-row" class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i class="icofont icofont-trash"></i></button>';
+    html += '<button class="btn btn-sm waves-effect waves-dark btn-danger btn-danger remove-row"><i class="icofont icofont-trash"></i></button>';
     html += '</div>';
     html += '</div>';
     html += '</div>';
@@ -20,6 +20,6 @@ $("#add-row").on('click', function(){
     $('.add-rows').append(html);
 });
 
-$(document).on('click', '#remove-row', function(){
+$(document).on('click', '.remove-row', function(){
     $(this).closest('.card').remove();
 });

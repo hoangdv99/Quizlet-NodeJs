@@ -1,7 +1,7 @@
 const { PrivacyConst } = require('../../config/globals');
 
 module.exports = {
-    tableName: 'profiles',
+    tableName: 'sets',
     attributes: {
         user_id: {type: 'number', required: true, isInteger: true},
         folder_id: {type: 'number', required: true, isInteger: true},
@@ -10,6 +10,7 @@ module.exports = {
         privacy: {
             type: 'number',
             isIn: [PrivacyConst.Public, PrivacyConst.Private]
-        }
+        },
+        process: {type: 'number', required: true, isInteger: true}
     }
 }

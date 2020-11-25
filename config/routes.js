@@ -19,8 +19,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /': { view: 'pages/homepage' },
-
+  'GET /': { controller: 'PageController', action: 'home' },
+  'GET /login': { controller: 'PageController', action: 'login' },
+  'GET /register': {controller: 'PageController', action: 'register'},
+  
 
   /***************************************************************************
   *                                                                          *
@@ -32,11 +34,23 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-  'GET /create-set': {view: 'pages/create-set'},
-  'GET /profile': {view: 'pages/profile'},
-  'GET /folders': {view: 'pages/folder'},
-  'GET /sets': {view: 'pages/set', locals: {layout: null}},
-  'GET /learn': {view: 'pages/learn', locals: {layout: null}},
-  'GET /sign-in' :{view: 'pages/sign-in', locals: {layout: null}},
-  'GET /sign-up' :{view: 'pages/sign-up', locals: {layout: null}}
+  // 'GET /create-set': {controller: 'SetController', action: 'getCreateSetPage'},
+  // 'GET /profile': {view: 'pages/profile'},
+  // 'GET /folders': {view: 'pages/folder'},
+  // 'GET /sets': {view: 'pages/set', locals: {layout: null}},
+  // 'GET /learn': {view: 'pages/learn', locals: {layout: null}},
+  // 'GET /sign-in' :{view: 'pages/sign-in', locals: {layout: null}},
+  // 'GET /sign-up' :{view: 'pages/sign-up', locals: {layout: null}},
+
+  'POST /create-set': {
+    controller: 'SetController',
+    action: 'createData'
+  },
+
+  'POST /login': {
+    controller: 'AuthController',
+    action: 'login'
+  }
+
+
 };

@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/globals
  */
 
+const { fail } = require('grunt');
+
 module.exports.globals = {
 
   /****************************************************************************
@@ -48,7 +50,8 @@ module.exports.globals = {
   ****************************************************************************/
 
   sails: true,
-  jwtSecret : 'bdYYvfl3RQ'
+  jwtSecret : 'bdYYvfl3RQ',
+  jwtExpires: '365d'
 };
 
 module.exports.PrivacyConst = {

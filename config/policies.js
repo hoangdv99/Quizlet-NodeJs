@@ -17,6 +17,16 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': true,
+  PageController: {
+    '*': 'checkForUser',
+    'home': 'isAuthenticated',
+  },
+
+  AuthController: {
+    '*': 'isAuthenticated',
+    login: true,
+    register: true
+  }
 
 };

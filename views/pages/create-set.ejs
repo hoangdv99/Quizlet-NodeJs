@@ -14,6 +14,12 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
+                    <% if(typeof(errors) !== "undefined"){ %>
+                    <% errors.forEach(function(error){ %>
+                    <div class="alert alert-danger icons-alert">
+                        <p><%= error %></p>
+                    </div>
+                    <% })} %>
 
                     <div class="row">
                         <div class="col-sm-12">
@@ -21,19 +27,37 @@
                             <div class="card">
 
                                 <div class="card-block">
-                                    <form id="main" method="" action="">
+                                    <form id="main" method="POST" action="/create-set">
                                         <div class="form-group row">
+                                            <% if(typeof(value) === "undefined"){ %>
                                             <label class="col-sm-2 col-form-label">Title</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control" name="title" value=""
                                                     placeholder="Enter a title like Biology - Chapter 22: Evolution">
                                             </div>
+                                            <% } else{ %>
+                                            <label class="col-sm-2 col-form-label">Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="title"
+                                                    value="<%= value.title %>"
+                                                    placeholder="Enter a title like Biology - Chapter 22: Evolution">
+                                            </div>
+                                            <% } %>
                                         </div>
                                         <div class="form-group row">
+                                            <% if(typeof(value) === "undefined"){ %>
                                             <label class="col-sm-2 col-form-label">Description</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" placeholder="Add a description">
+                                                <input type="text" name="description" class="form-control"
+                                                    placeholder="Add a description" value="">
                                             </div>
+                                            <% } else{ %>
+                                            <label class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="description" class="form-control"
+                                                    placeholder="Add a description" value="<%= value.description %>">
+                                            </div>
+                                            <% } %>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2">Visible</label>
@@ -41,14 +65,14 @@
                                                 <div class="form-radio">
                                                     <div class="radio radiofill radio-primary radio-inline">
                                                         <label>
-                                                            <input type="radio" name="member" value="public"
-                                                                data-bv-field="member">
+                                                            <input type="radio" name="privacy" value=1
+                                                                data-bv-field="member" checked>
                                                             <i class="helper"></i>Public
                                                         </label>
                                                     </div>
                                                     <div class="radio radiofill radio-primary radio-inline">
                                                         <label>
-                                                            <input type="radio" name="member" value="private"
+                                                            <input type="radio" name="privacy" value=2
                                                                 data-bv-field="member">
                                                             <i class="helper"></i>Private
                                                         </label>
@@ -57,65 +81,96 @@
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
+                                        <% if(typeof(value) === "undefined"){ %>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <div class="col-sm-5">
+                                                        <input type="text" name="term" class="form-control"
+                                                            placeholder="Term">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" name="definition"
+                                                            placeholder="Definition">
+                                                    </div>
+
+                                                    <div class="col-sm-1">
+                                                        <button
+                                                            class="btn btn-sm waves-effect waves-dark btn-danger btn-danger remove-row"><i
+                                                                class="icofont icofont-trash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-end">
+                                                    <!-- <label class="col-sm-1 col-form-label">1</label> -->
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control" name="term"
+                                                            placeholder="Term">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" placeholder="Definition"
+                                                            name="definition">
+                                                    </div>
+
+                                                    <div class="col-sm-1">
+                                                        <button
+                                                            class="btn btn-sm waves-effect waves-dark btn-danger btn-danger remove-row"><i
+                                                                class="icofont icofont-trash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } else{ %>
+                                        <% for(var i = 0; i < value.term.length; i++){ %>
 
                                         <div class="card">
                                             <div class="card-block">
                                                 <div class="row align-items-end">
-                                                    <!-- <label class="col-sm-1 col-form-label">1</label> -->
                                                     <div class="col-sm-5">
-                                                        <input type="text" class="form-control" placeholder="Term">
+                                                        <input type="text" name="term" class="form-control"
+                                                            placeholder="Term" value="<%= value.term[i] %>">
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Definition">
+                                                        <input type="text" class="form-control" name="definition"
+                                                            placeholder="Definition" value="<%= value.definition[i] %>">
                                                     </div>
-                                                    
+
                                                     <div class="col-sm-1">
                                                         <button id="remove-row"
-                                                        class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i
-                                                            class="icofont icofont-trash"></i></button>
+                                                            class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i
+                                                                class="icofont icofont-trash"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <div class="row align-items-end">
-                                                    <!-- <label class="col-sm-1 col-form-label">1</label> -->
-                                                    <div class="col-sm-5">
-                                                        <input type="text" class="form-control" placeholder="Term">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Definition">
-                                                    </div>
-                                                    
-                                                    <div class="col-sm-1">
-                                                        <button id="remove-row"
-                                                        class="btn btn-sm waves-effect waves-dark btn-danger btn-danger"><i
-                                                            class="icofont icofont-trash"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <% } %>
+                                        <% } %>
+
                                         <div class="add-rows"></div>
                                         <div class="row">
                                             <div class="col-sm-5"></div>
                                             <div class="col-sm-5">
-                                                <button id="add-row" type="button" class="btn waves-effect waves-light btn-success"><i class="icofont icofont-plus"></i>ADD CARD</button>
+                                                <button id="add-row" type="button"
+                                                    class="btn waves-effect waves-light btn-success"><i
+                                                        class="icofont icofont-plus"></i>ADD CARD</button>
                                             </div>
                                         </div>
-
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button type="submit"
+                                                    class="btn-lg waves-effect waves-light btn-success btn-square btn-block">CREATE</button>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <button class="btn-lg waves-effect waves-light btn-success btn-square btn-block">CREATE</button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,16 +1,27 @@
 module.exports = {
     tableName: 'users',
+    primaryKey: 'id',
     attributes: {
-        username: {type: 'String', unique: true, maxLength: 25},
-        password: {type: 'String'},
-        class_id: {type: 'number', required: false, isInteger: true},
         email: {
-            type: 'String',
+            type: 'string',
             required: true,
-            unique: true,
             isEmail: true,
-            maxLength: 25
+            unique: true
         },
-        token: {type: 'String'}
-    }
+        password: {
+            type: 'String',
+            required: true
+        },
+        class_id: {
+            type: 'number', 
+            required: false, 
+            isInteger: true
+        },
+    },
+    customToJSON() {
+		// obviously never return password downstream to anyone, ever
+		return _.omit(this, [
+			'password',
+		])
+	},
 }
