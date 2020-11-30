@@ -14,6 +14,7 @@ module.exports = {
 	fn: function(inputs, exits) {
 		// randomBytes returns double of size, so we halve it to get somewhat close to the caller's request
 		var text = crypto.randomBytes(inputs.size * 0.5).toString('hex')
+		console.log(text)
 		return exits.success(text)
 	}
 }

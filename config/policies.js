@@ -16,17 +16,17 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-
-  '*': true,
-  PageController: {
-    '*': 'checkForUser',
-    'home': 'isAuthenticated',
+  'AuthController': {
+    'login': true,
+    'register': true,
+    'signInToken': true,
   },
 
-  AuthController: {
-    '*': 'isAuthenticated',
-    login: true,
-    register: true
+  'PageController': {
+    'home': 'isLoggedIn',
+    'login': true,
+    'register': true,
+    'profile': 'isLoggedIn'
   }
 
 };

@@ -26,7 +26,7 @@ module.exports = {
 
 	fn: async function(inputs, exits) {
 		var attr = {
-			id: sails.helpers.randomCryptoString({ size: 32 }).execSync(),
+			//id: sails.helpers.randomCryptoString({ size: 32 }).execSync(),
 			email: inputs.email.toLowerCase(),
 		}
 

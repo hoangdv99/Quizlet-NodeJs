@@ -8,10 +8,6 @@ module.exports = {
 		return res.view('pages/login', {layout: null})
 	},
 
-	logout: function(req, res) {
-		return res.view('pages/login', {layout: null})
-	},
-
 	register: function(req, res) {
 		return res.view('pages/register', {layout: null})
 	},

@@ -22,7 +22,7 @@ module.exports.routes = {
   'GET /': { controller: 'PageController', action: 'home' },
   'GET /login': { controller: 'PageController', action: 'login' },
   'GET /register': {controller: 'PageController', action: 'register'},
-  
+  'GET /logout' : {controller: 'AuthController', action: 'logout'},
 
   /***************************************************************************
   *                                                                          *
@@ -50,6 +50,11 @@ module.exports.routes = {
   'POST /login': {
     controller: 'AuthController',
     action: 'login'
+  },
+
+  'POST /register': {
+    controller: 'AuthController',
+    action: 'register'
   }
 
 
