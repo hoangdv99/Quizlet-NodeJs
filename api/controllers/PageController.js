@@ -1,6 +1,9 @@
 module.exports = {
 	home: function (req, res) {
-		return res.view('pages/homepage');
+		let user = req.signedCookies.user;
+		res.view("pages/homepage", {
+			user: user
+		})
 	},
 
 	login: function(req, res) {
