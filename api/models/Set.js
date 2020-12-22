@@ -11,6 +11,6 @@ module.exports = {
             type: 'number',
             isIn: [PrivacyConst.Public, PrivacyConst.Private]
         },
-        process: {type: 'number', required: true, isInteger: true}
+        progress: {type: 'number', required: true, isInteger: true}
     }
 }

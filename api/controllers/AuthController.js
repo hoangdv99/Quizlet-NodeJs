@@ -14,6 +14,7 @@ module.exports = {
 					res.cookie(
 						"user",
 						{
+							username: decoded.username,
 							id: decoded.id,
 							email: decoded.email,
 						},
@@ -39,13 +40,21 @@ module.exports = {
 	// },
 
 	register: async function (req, res) {
+		var username = req.body.username;
 		var email = req.body.email;
 		var password = req.body.password;
 		var confirmPassword = req.body.confirmPassword;
 		var errors = [];
 
-		var existedUsername = await sails.models.user.find({
+		var existedEmail = await sails.models.user.find({
 			email: email
+		});
+		if (existedEmail.length > 0) {
+			errors.push("This email is in use.");
+		}
+
+		var existedUsername = await sails.models.user.find({
+			username: username
 		});
 		if (existedUsername.length > 0) {
 			errors.push("This email is in use.");
@@ -67,6 +76,7 @@ module.exports = {
 					}
 					password = hash;
 					await sails.models.user.create({
+						username: username,
 						email: email,
 						password: password,
 					}
@@ -78,19 +88,19 @@ module.exports = {
 	},
 
 	login: async function (req, res) {
-		var email = req.body.email;
+		var username = req.body.username;
 		var password = req.body.password;
 		var errors = [];
 
-		var user = await sails.models.user.findOne({ email: email });
+		var user = await sails.models.user.findOne({ username: username });
 		if (user) {
 			if (bcrypt.compareSync(password, user.password)) {
-				res.clearCookie("user");
+				res.clearCookie('user', {path: '/'});
 				res.cookie(
 					"user",
 					{
 						id: user.id,
-						email: user.email,
+						username: user.username,
 					},
 					{ signed: true }
 				);
@@ -110,7 +120,7 @@ module.exports = {
 	},
 
 	logout: function (req, res) {
-		res.clearCookie("user");
+		res.clearCookie('user', {path: '/'});
 		res.redirect("/login");
 	},
 

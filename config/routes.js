@@ -34,13 +34,11 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ***************************************************************************/
-  // 'GET /create-set': {controller: 'SetController', action: 'getCreateSetPage'},
-  // 'GET /profile': {view: 'pages/profile'},
-  // 'GET /folders': {view: 'pages/folder'},
-  // 'GET /sets': {view: 'pages/set', locals: {layout: null}},
-  // 'GET /learn': {view: 'pages/learn', locals: {layout: null}},
-  // 'GET /sign-in' :{view: 'pages/sign-in', locals: {layout: null}},
-  // 'GET /sign-up' :{view: 'pages/sign-up', locals: {layout: null}},
+  'GET /:username/profile': { controller: 'ProfileController', action: 'getProfile'},
+  'GET /:username/create-set': {controller: 'SetController', action: 'getCreateSet'},
+  'GET /:username/:title': {controller: 'SetController', action: 'getSet'},
+  'GET /:title/edit': {controller: 'SetController', action: 'getEditSet'},
+  'GET /:title/learn': {controller: 'SetController', action: 'getSetLearn'},
 
   'POST /create-set': {
     controller: 'SetController',
@@ -55,7 +53,9 @@ module.exports.routes = {
   'POST /register': {
     controller: 'AuthController',
     action: 'register'
-  }
+  },
 
+  'POST /:title/edit': { controller: 'SetController', action: 'postEditSet'},
+  'GET /:title/delete': { controller: 'SetController', action: 'deleteSet'}
 
 };

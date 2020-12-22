@@ -28,23 +28,22 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/waves.min.css" type="text/css" media="all">
 
-    <link rel="stylesheet" type="text/css" href="css/feather.css">
-    <link rel="stylesheet" type="text/css" href="css/icofont.css">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/feather.css">
+    <link rel="stylesheet" type="text/css" href="../../css/icofont.css">
+    <link rel="stylesheet" type="text/css" href="../../css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="../../css/font-awesome-n.min.css">
 
-    <link rel="stylesheet" href="css/chartist.css" type="text/css" media="all">
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/widget.css">
-    <link rel="stylesheet" type="text/css" href="css/pages.css">
-    <link rel="stylesheet" type="text/css" href="css/component.css">
-    <link rel="stylesheet" href="css/custom.css">
-
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/widget.css">
+    <link rel="stylesheet" type="text/css" href="../../css/pages.css">
+    <link rel="stylesheet" type="text/css" href="../../css/component.css">
+    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="../../css/owl.theme.default.css">
 
 </head>
 
@@ -61,8 +60,8 @@
             <nav class="navbar header-navbar pcoded-header " header-theme="theme6">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo" logo-theme="theme6">
-                        <a href="index.html">
-                            <img class="img-fluid" src="png/logo-selfmade.png" alt="Theme-Logo" />
+                        <a href="/">
+                            <img class="img-fluid" src="/../../png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
@@ -88,7 +87,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="/create-set">
+                                <a href="/<%= user.username %>/create-set">
                                     <div class="d-inline">
                                         <i class="feather icon-file-plus"></i>
                                         <span>Create</span>
@@ -100,34 +99,23 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="jpg/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                        <span>John Doe</span>
+                                        <span>Hi, <% if(user){ %>
+                                                <%= user.username %>
+                                                    <% } %></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
+
                                     <ul class="show-notification profile-notification dropdown-menu"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+
                                         <li>
-                                            <a href="#!">
-                                                <i class="feather icon-settings"></i> Settings
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
+                                            <a href="/<%= user.username %>/profile">
                                                 <i class="feather icon-user"></i> Profile
                                             </a>
                                         </li>
+
                                         <li>
-                                            <a href="email-inbox.html">
-                                                <i class="feather icon-mail"></i> My Messages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-lock-screen.html">
-                                                <i class="feather icon-lock"></i> Lock Screen
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-sign-in-social.html">
+                                            <a href="/logout" id="submitLogout">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -138,9 +126,8 @@
                     </div>
                 </div>
             </nav>
-            <div class="pcoded-main-container">
+            <div class="pcoded-main-container>
                 <div class="pcoded-wrapper">
-
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
@@ -154,9 +141,8 @@
                                             <span class="pcoded-mtext">Flashcards</span>
                                         </a>
                                     </li>
-                                    % user %
                                     <li class=" ">
-                                        <a href="#" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="/<%= set.title %>/learn" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-book"></i>
                                             </span>
@@ -187,140 +173,190 @@
                         </div>
                     </nav>
                     <div class="pcoded-content">
-
                         <div class="page-header card">
                             <div class="row align-items-end">
-                                <div class="col-lg-9">
+                                <div class="col-lg-10">
                                     <div class="page-header-title">
                                         <i class="feather icon-file bg-c-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Set 1</h5>
-                                            <span>3 sets</span>
+                                            <h5>
+                                                <%= set.title %>
+                                            </h5>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
-                                            class="icofont icofont-plus"></i></button>
-                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
-                                            class="icofont icofont-learn"></i></button>
-                                    <button class="btn waves-effect waves-light btn-success btn-icon"><i
-                                            class="icofont icofont-edit"></i></button>
-                                    <button class="btn waves-effect waves-light btn-danger btn-icon"><i
-                                            class="icofont icofont-trash"></i></button>
+
+                                <div class="col-lg-2">
+                                    <% if(owner.username===user.username){ %>
+                                        <a type="button" class="btn btn-success btn-icon waves-effect waves-light"
+                                            data-toggle="tooltip" data-placement="top" title="Add set to folder or class">
+                                            <i class="icofont icofont-plus"></i>
+                                        </a>
+
+                                        <a type="button" href="/<%= set.title %>/edit"
+                                            class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
+                                            data-placement="top" title="Edit">
+                                            <i class="icofont icofont-edit"></i>
+                                        </a>
+                                        <a type="button" href="/<%= set.title%>/delete"
+                                            onclick="return confirm('Are you sure to delete this set?')"
+                                            class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip"
+                                            data-placement="top" title="Remove">
+                                            <i class="icofont icofont-trash"></i>
+                                        </a>
+
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
-
                         <div class="pcoded-inner-content">
                             <div class="main-body">
                                 <div class="page-wrapper">
                                     <div class="page-body">
-
-                                        <div id="carouselExampleControls" class="carousel" data-ride="carousel">
+                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
+                                            data-interval="false">
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
-                                                    <div class="row col-sm-12">
-                                                        <div class="col-sm-2"></div>
+                                                    <!-- <img src="../../jpg/slide1.jpg" class="d-block w-100" alt="..."> -->
+                                                    <div class="row col-lg-12">
+                                                        <div class="col-sm-3"></div>
 
                                                         <!-- <div class="card mb-3"> -->
-                                                            <div class="flip-card">
-                                                                <div class="flip-card-inner">
-                                                                    <div class="card flip-card-front">
-                                                                        <p class="card-text">Hello</p>
-                                                                    </div>
-                                                                    <div class="card flip-card-back">
-                                                                        <p class="card-text">Hoangfz</p>
-                                                                    </div>
+                                                        <div class="flip-card">
+                                                            <div class="flip-card-inner">
+                                                                <div class="card flip-card-front">
+                                                                    <p class="flip-card-text">
+                                                                        <%= cards[0].term %>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="card flip-card-back">
+                                                                    <p class="flip-card-text">
+                                                                        <%= cards[0].definition %>
+                                                                    </p>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                         <!-- </div> -->
 
                                                     </div>
                                                 </div>
-                                                <!-- <div class="carousel-item">
-                                                    <div class="row col-sm-12">
-                                                        <div class="col-sm-2"></div>
-                                                        <div class="col-sm-8">
-                                                            <div class="card">
-                                                                <div class="card-header">
-                                                                    <h5>Hello 1</h5>
-                                                                </div>
-                                                                <div class="card-block">
-                                                                    <img class="d-block w-100"
-                                                                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).jpg"
-                                                                        alt="Second slide">
+                                                <% for(var i=1; i < cards.length; i++){ %>
+                                                    <div class="carousel-item">
+                                                        <!-- <img src="../../jpg/slide1.jpg" class="d-block w-100" alt="..."> -->
+                                                        <div class="row col-lg-12">
+                                                            <div class="col-sm-3"></div>
+
+                                                            <!-- <div class="card mb-3"> -->
+                                                            <div class="flip-card">
+                                                                <div class="flip-card-inner">
+                                                                    <div class="card flip-card-front">
+                                                                        <p class="flip-card-text">
+                                                                            <%= cards[i].term %>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="card flip-card-back">
+                                                                        <p class="flip-card-text">
+                                                                            <%= cards[i].definition %>
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+                                                            <!-- </div> -->
+
                                                         </div>
-                                                        <div class="col-sm-2"></div>
                                                     </div>
-                                                </div> -->
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls"
-                                                role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls"
-                                                role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                        <br>
-                                        <h4 class="font-weight-bold">Terms in this set (90)</h4>
-                                        <br>
-                                        <h5 class="font-weight-bold text-warning">Studied(20)</h5>
-                                        <br>
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <div class="row col-sm-12">
-                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
-                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
-                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="card-block">
-                                                <div class="row col-sm-12">
-                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
-                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
-                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
-                                                </div>
+                                                    <% } %>
+                                                        <a class="carousel-control-prev" href="#carouselExampleControls"
+                                                            role="button" data-slide="prev">
+                                                            <span class="carousel-control-prev-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carouselExampleControls"
+                                                            role="button" data-slide="next">
+                                                            <span class="carousel-control-next-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
                                             </div>
                                         </div>
-                                        <h5 class="font-weight-bold text-primary">Not studied(20)</h5>
                                         <br>
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <div class="row col-sm-12">
-                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
-                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
-                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="card-block">
-                                                <div class="row col-sm-12">
-                                                    <div class="col-sm-12 col-xl-4"><p>Term</p></div>
-                                                    <div class="col-sm-12 col-xl-7"><p>Difinition</p></div>
-                                                    <div class="col-sm-12 col-xl-1"><i class="feather icon-edit"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h4 class="font-weight-bold">Terms in this set (<%= cards.length %>)</h4>
+                                        <% var studiedCards=[], notStudiedCards=[] %>
+                                            <% for(var i=0; i < cards.length; i++){ %>
+                                                <% if(cards[i].status==globals.CardStatus.Remembered)
+                                                    {studiedCards.push(cards[i])} else{notStudiedCards.push(cards[i])}%>
+                                                    <% } %>
+                                                        <br>
+                                                        <h5 class="font-weight-bold text-warning">Studied(<%=
+                                                                studiedCards.length %>)
+                                                        </h5>
+                                                        <br>
+                                                        <div class="card">
+                                                            <% for(var i=0; i < studiedCards.length; i++){ %>
+                                                                <div class="card-block">
+                                                                    <div class="row col-sm-12">
+                                                                        <div class="col-sm-12 col-xl-4">
+                                                                            <p>
+                                                                                <%= studiedCards[i].term %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-sm-12 col-xl-7">
+                                                                            <p>
+                                                                                <%= studiedCards[i].definition %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <% if(owner.username===user.username){ %>
+                                                                            <a class="col-sm-12 col-xl-1"
+                                                                                href="/<%= set.title %>"><i
+                                                                                    class="feather icon-edit"></i>
+                                                                            </a>
+                                                                            <% } %>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <% } %>
+                                                        </div>
+                                                        <h5 class="font-weight-bold text-primary">Not
+                                                            studied(<%= notStudiedCards.length %>)</h5>
+                                                        <br>
+                                                        <div class="card">
+                                                            <% for(var i=0; i < notStudiedCards.length; i++){ %>
+                                                                <div class="card-block">
+                                                                    <div class="row col-sm-12">
+                                                                        <div class="col-sm-12 col-xl-4">
+                                                                            <p>
+                                                                                <%= notStudiedCards[i].term %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-sm-12 col-xl-7">
+                                                                            <p>
+                                                                                <%= notStudiedCards[i].definition %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <% if(owner.username===user.username){ %>
+                                                                            <a class="col-sm-12 col-xl-1"
+                                                                                href="/<%= set.title %>/edit"><i
+                                                                                    class="feather icon-edit"></i>
+                                                                            </a>
+                                                                            <% } %>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <% } %>
+                                                        </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="styleSelector">
                     </div>
-
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -367,50 +403,47 @@
         <p>Sorry for the inconvenience!</p>
     </div>
 <![endif]-->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../js/popper.min.js"></script>
 
-    <script src="js/waves.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/jquery.slimscroll.js"></script>
+    <script src="../../js/waves.min.js" type="text/javascript"></script>
 
-    <script src="js/jquery.flot.js" type="text/javascript"></script>
-    <script src="js/jquery.flot.categories.js" type="text/javascript"></script>
-    <script src="js/curvedlines.js" type="text/javascript"></script>
-    <script src="js/jquery.flot.tooltip.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/jquery.slimscroll.js"></script>
 
-    <script src="js/amcharts.js" type="text/javascript"></script>
-    <script src="js/serial.js" type="text/javascript"></script>
-    <script src="js/light.js" type="text/javascript"></script>
+    <script src="../../js/jquery.flot.js" type="text/javascript"></script>
+    <script src="../../js/jquery.flot.categories.js" type="text/javascript"></script>
+    <script src="../../js/curvedlines.js" type="text/javascript"></script>
+    <script src="../../js/jquery.flot.tooltip.min.js" type="text/javascript"></script>
 
-    <script src="js/markerclusterer.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="js/gmaps.js"></script>
-    <script type="text/javascript" src="js/tabs.js"></script>
-    <script src="js/pcoded.min.js" type="2d8d78e876b340f9029c575b-text/javascript"></script>
-    <script src="js/vertical-layout.min.js" type="2d8d78e876b340f9029c575b-text/javascript"></script>
-    <script type="2d8d78e876b340f9029c575b-text/javascript" src="js/crm-dashboard.min.js"></script>
-    <script type="2d8d78e876b340f9029c575b-text/javascript" src="js/script.min.js"></script>
-    <script type="text/javascript" src="js/validate.js"></script>
-    <script type="text/javascript" src="js/sweetalert.min.js"></script>
-    <script type="text/javascript" src="js/modal.js"></script>
-    <script src="js/classie.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/modaleffects.js"></script>
+    <script src="../../js/amcharts.js" type="text/javascript"></script>
+    <script src="../../js/serial.js" type="text/javascript"></script>
+    <script src="../../js/light.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/form-validation.js"></script>
-    <script type="text/javascript" src="js/custom-row.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
-        type="2d8d78e876b340f9029c575b-text/javascript"></script>
-    <script type="2d8d78e876b340f9029c575b-text/javascript">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script src="../../js/markerclusterer.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/tabs.js"></script>
+    <script src="../../js/pcoded.min.js" type="text/javascript"></script>
+    <script src="../../js/vertical-layout.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/crm-dashboard.min.js"></script>
+    <script type="text/javascript" src="../../js/script.min.js"></script>
+    <script type="text/javascript" src="../../js/validate.js"></script>
+    <script type="text/javascript" src="../../js/sweetalert.min.js"></script>
+    <script src="../../js/classie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/modaleffects.js"></script>
 
-  gtag('config', 'UA-23581568-13');
-</script>
-    <script src="js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
+    <!-- <script type="text/javascript" src="js/form-validation.js"></script> -->
+    <script type="text/javascript" src="../../js/custom-row.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script src="../../js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
     <script>
         $('.flip-card').on('click',
             function () {
