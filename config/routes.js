@@ -39,10 +39,16 @@ module.exports.routes = {
   'GET /:username/:title': {controller: 'SetController', action: 'getSet'},
   'GET /:title/edit': {controller: 'SetController', action: 'getEditSet'},
   'GET /:title/learn': {controller: 'SetController', action: 'getSetLearn'},
+  'GET /:title/test': {controller: 'SetController', action: 'getTest'},
 
   'POST /create-set': {
     controller: 'SetController',
     action: 'createData'
+  },
+
+  'POST /create-folder': {
+    controller: 'FolderController',
+    action: 'createFolder'
   },
 
   'POST /login': {
