@@ -6,16 +6,35 @@
                 <div class="page-header-title">
                     <i class="feather icon-folder bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Folder 1</h5>
-                        <span>3 sets</span>
+                        <h5>
+                            <%= folder.title %>
+                        </h5>
+                        <span>
+                            <%= setsInFolder.length %> sets
+                        </span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-                <button class="btn waves-effect waves-light btn-success btn-icon"><i class="icofont icofont-plus"></i></button>
-                <button class="btn waves-effect waves-light btn-success btn-icon"><i class="icofont icofont-learn"></i></button>
-                <button class="btn waves-effect waves-light btn-success btn-icon"><i class="icofont icofont-edit"></i></button>
-                <button class="btn waves-effect waves-light btn-danger btn-icon"><i class="icofont icofont-trash"></i></button>
+                <button class="btn waves-effect waves-light btn-success btn-icon" data-toggle="modal"
+                    data-target="#exampleModal"><i class="icofont icofont-plus add-set-btn"></i></button>
+                <button class="btn waves-effect waves-light btn-success btn-icon"><i
+                        class="icofont icofont-learn"></i></button>
+                        <% if(owner.username===user.username){ %>
+
+                            <a type="button" href="/<%= folder.title %>/edit"
+                                class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
+                                data-placement="top" title="Edit">
+                                <i class="icofont icofont-edit"></i>
+                            </a>
+                            <a type="button" href="/folders/<%= folder.id%>/delete"
+                                onclick="return confirm('Are you sure to delete this folder?')"
+                                class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip"
+                                data-placement="top" title="Remove">
+                                <i class="icofont icofont-trash"></i>
+                            </a>
+
+                            <% } %>
             </div>
         </div>
     </div>
@@ -24,66 +43,100 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card list-view-media">
-                                <div class="card-block">
-                                    <div class="media">
-                                        <a class="media-left" href="#">
-                                            <img class="media-object card-list-img"
-                                                src="jpg/set1.jpg"
-                                                alt="Generic placeholder image">
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="col-xs-12">
-                                                <h6 class="d-inline-block">
-                                                    Heading</h6>
-                                                <label
-                                                    class="label label-info">80%</label>
+                    <% if(setsInFolder.length===0){ %>
+                        <h2 class="text-center">This folder has no sets yet</h3>
+                    <% } else { %>
+                        <div class="row ">
+                        <% for(var i=0; i < setsInFolder.length; i++){ %>
+                            <div class="col-xl-6 col-dm-6">
+                                <div class="card list-view-media">
+                                    <div class="card-block">
+                                        <div class="media">
+                                            <a class="media-left" href="/<%= owner.username %>/<%= setsInFolder[i].title %>">
+                                                <img class="media-object card-list-img"
+                                                    src="../../jpg/set1.jpg"
+                                                    alt="Generic placeholder image">
+                                            </a>
+                                            <div class="media-body">
+                                                <div class="col-xs-12">
+                                                    <a href="/<%= owner.username %>/<%= setsInFolder[i].title %>">
+                                                        <h6 class="d-inline-block">
+                                                            <%= setsInFolder[i].title %>
+                                                        </h6>
+                                                    </a>                                                    
+                                                </div>
+                                                <div class="f-13 text-muted m-b-15">
+                                                    <%= setsInFolder[i].description %>
+                                                </div>
+                                                <a href='/<%= owner.username %>/<%= setsInFolder[i].title %>'
+                                                    class="btn btn-success">View</a>
+                                                <a href='#' class="btn btn-danger">Remove</a>
                                             </div>
-                                            <div class="f-13 text-muted m-b-15">
-                                                Software Engineer
-                                            </div>
-                                            <p>Hi, This is my short intro text.
-                                            </p>
-                                            <a href="" class="btn btn-success">View</a>
-                                            <a href="" class="btn btn-danger">Remove</a>   
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        <% } %>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="card list-view-media">
-                                <div class="card-block">
-                                    <div class="media">
-                                        <a class="media-left" href="#">
-                                            <img class="media-object card-list-img"
-                                                src="jpg/set1.jpg"
-                                                alt="Generic placeholder image">
-                                        </a>
-                                        <div class="media-body">
-                                            <div class="col-xs-12">
-                                                <h6 class="d-inline-block">
-                                                    Heading</h6>
-                                                <label
-                                                    class="label label-info">80%</label>
-                                            </div>
-                                            <div class="f-13 text-muted m-b-15">
-                                                Software Engineer
-                                            </div>
-                                            <p>Hi, This is my short intro text.
-                                            </p>
-                                            <a href="" class="btn btn-success">View</a>
-                                            <a href="" class="btn btn-danger">Remove</a>   
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
+                    <% } %>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-c-blue">
+                <h3 class="modal-title text-white" id="exampleModalLabel">Add a set</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card d-flex">
+                    <div class="card-body align-items-center d-flex justify-content-center">
+                        <a href="/<%= user.username %>/create-set" class="btn btn-success text-white">+ CREATE A NEW
+                            SET</a>
+                    </div>
+                </div>
+                <form action="/add-sets" method="POST" id="add-sets-form">
+                    <input type="text" class="hidden" name="folderId" value="<%= folder.id %>">
+                    <% for(var i=0; i < curUserSets.length; i++){ %>
+                        <% if(curUserSets[i].folder_id !== folder.id){ %>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-11">
+                                            <%= curUserSets[i].title %>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="checkbox-fade fade-in-success">
+                                                <label>
+                                                    <input type="checkbox" name="set">
+                                                    <span class="cr">
+                                                        <i class="cr-icon icofont icofont-ui-check txt-success"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" form="add-sets-form" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>

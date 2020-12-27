@@ -44,49 +44,35 @@
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" type="text/css" href="../../css/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="../../css/owl.theme.default.css">
-    <style>
-        :root {
-            --hue-neutral: 200;
-            --hue-wrong: 0;
-            --hue-correct: 145;
-        }
-
-        .pcoded-content {
-            --hue: var(--hue-neutral);
-            background-color: hsl(var(--hue), 100%, 20%);
-        }
-
-        .btn {
-            --hue: var(--hue-neutral);
-            background-color: hsl(var(--hue), 100%, 50%);
-            border: 1px solid hsl(var(--hue), 100%, 30%);
-            color: white;
-            outline: none;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-size: large;
-        }
-
-        .btn:hover {
-            border-color: black;
-        }
-
-        .btn.correct {
-            --hue: var(--hue-correct);
-
-        }
-
-        .btn.wrong {
-            --hue: var(--hue-wrong);
-            color: black;
-        }
-
-        .question {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 30px;
-        }
-    </style>
-
 </head>
+<style>
+    .answer-btn {
+        background-color: white;
+        border: solid 1px #03fcf0;
+        border-radius: 5px;
+        font-size: large;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .answer-btn:hover {
+        border: solid 1px orange;
+    }
+
+    .wrong {
+        background-color: red;
+        border: solid 1px orange;
+    }
+
+    .correct {
+        background-color: green;
+        border: solid 1px orange;
+    }
+
+    .question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+</style>
 
 <body>
 
@@ -187,30 +173,12 @@
                                 <li class=" ">
                                     <div class="pcoded-navigation-label">
                                         <p class="text-md-center">Remaining </p>
-                                        <% var remaining=[], familiar=[], knownwell=[] %>
-                                            <% for(var i=0; i < cards.length; i++){ %>
-                                                <% if(cards[i].status==globals.CardStatus.Remembered)
-                                                    {knownwell.push(cards[i])} else
-                                                    if(cards[i].status==globals.CardStatus.Seen){familiar.push(cards[i])}
-                                                    else remaining.push(cards[i])%>
-                                                    <% } %>
-                                                        <p class="text-md-center" id="remaining">
-                                                            <%= remaining.length %>
-                                                        </p>
-                                                        <hr>
-                                                        <p class="text-md-center">Familiar <span><i
-                                                                    class="feather icon-check"></i></span></p>
-                                                        <p class="text-md-center" id="familiar">
-                                                            <%= familiar.length %>
-                                                        </p>
-                                                        <hr>
-                                                        <p class="text-md-center">Known Well <span><i
-                                                                    class="feather icon-check"></i>
-                                                                <i class="feather icon-check"></i></span></p>
-                                                        <p class="text-md-center" id="known-well">
-                                                            <%= knownwell.length %>
-                                                        </p>
-                                                        <hr>
+                                        <p class="text-md-center" id="remaining"></p>
+                                        <hr>
+                                        <p class="text-md-center">Familiar <span><i
+                                                    class="feather icon-check"></i></span></p>
+                                        <p class="text-md-center" id="familiar"></p>
+                                        <hr>
                                     </div>
                                 </li>
                             </ul>
@@ -226,33 +194,49 @@
                                     <div class="col-lg-12 col-xl-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="question" style="height: 20rem;">
-                                                    question
-                                                    <input type="text" value="<%= JSON.stringify(cards) %>"
-                                                        class="hidden cards-data">
+                                                <div class="card-block">
+                                                    <div class="question" style="height: 13rem;">
+                                                        <input type="text" value="<%= JSON.stringify(cards) %>"
+                                                            class="hidden cards-data">
+                                                        <input type="text" value="<%= JSON.stringify(quizzes) %>"
+                                                            class="hidden quizzes-data">
+                                                    </div>
                                                 </div>
                                                 <div class="choices">
                                                     <div class="card-block">
-                                                        <div class="row answer-buttons">
+                                                        <div class="row answer-btns">
                                                             <div class="col-lg-6 col-md-12">
                                                                 <div class="form-group">
-                                                                    <button class="btn btn-block wrong">A. Border
-                                                                        Button</button>
-                                                                    <button class="btn btn-block">B. Border
-                                                                        Button</button>
+                                                                    <button class="btn btn-block answer-btn"
+                                                                        id="answer0"></button>
+                                                                    <button class="btn btn-block answer-btn"
+                                                                        id="answer1"></button>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-12">
-
-                                                                <button class="btn btn-block">C. Border
-                                                                    Button</button>
-                                                                <button class="btn btn-block">D. Border
-                                                                    Button</button>
+                                                                <div class="form-group">
+                                                                    <button class="btn btn-block answer-btn"
+                                                                        id="answer2"></button>
+                                                                    <button class="btn btn-block answer-btn"
+                                                                        id="answer3"></button>
+                                                                </div>
                                                             </div>
                                                         </div>
-
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <button type="submit"
+                                                                class="btn-lg waves-effect waves-light btn-success btn-square btn-block hidden next">Next</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <button type="submit"
+                                                                class="btn-lg waves-effect waves-light btn-warning btn-square btn-block hidden retry">Retry</button>
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -262,8 +246,6 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="set" value="<%= set.title %>" />
-            <input type="hidden" id="cards" value="<%= cards %>" />
             <div id="styleSelector">
             </div>
         </div>
@@ -358,20 +340,81 @@
     </script>
     <script>
         var cards = JSON.parse($('.cards-data').val());
-        var terms = [], defs = [], quizzes = [];
-        for (var i = 0; i < cards.length; i++) {
-            terms.push(cards[i].term);
-            defs.push(cards[i].definition);
+        var quizzes = JSON.parse($('.quizzes-data').val());
+        var currentIndex, remaining = quizzes, familiar = [];
+        $(document).ready(function () {
+            console.log(quizzes)
+            currentIndex = 0;
+            updateScore();
+            setNextQuestion();
+        });
+
+        $('.answer-btn').on('click', function () {
+            $('.next').removeClass('hidden');
+            $('button[value="true"]').addClass('correct');
+            if ($(this).val() === "false") {
+                $(this).addClass('wrong');
+            } else {
+                remaining.shift();
+                familiar.push($(this).text());
+            }
+            updateScore();
+            if (remaining.length === 0) {
+                $('.retry').removeClass('hidden');
+                $('.next').addClass('hidden');
+            }
+        });
+
+        $('.next').on('click', function () {
+            shuffle(quizzes);
+            setNextQuestion();
+        });
+        $('.retry').on('click', function () {
+            location.reload();
+        });
+
+        function setNextQuestion() {
+            resetState();
+            showQuestion(remaining[currentIndex]);
         }
-        for (var i = 0; i < cards.length; i++) {
-            var quiz = {
-                question: cards[i].definition,
-                answers: [
-                    { text: cards[i].term, correct: true }
-                ]
+
+        function resetState() {
+            $('.answer-btn').removeClass('correct');
+            $('.answer-btn').removeClass('wrong');
+            $('.next').addClass('hidden');
+        }
+
+        function showQuestion(quiz) {
+            $('.question').text(quiz.question);
+            var answerBtns = document.getElementsByClassName('answer-btn');
+            for (let i = 0; i < 4; i++) {
+                $(`#answer${i}`).text(quiz.answers[i].text);
+                $(`#answer${i}`).val(quiz.answers[i].correct);
             }
         }
 
+        function updateScore() {
+            $('#remaining').text(remaining.length);
+            $('#familiar').text(familiar.length);
+        }
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
     </script>
     <script type="text/javascript" src="../../js/learn.js"></script>
     <script src="../../js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>

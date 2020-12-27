@@ -41,12 +41,48 @@ module.exports = {
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
 
+        var quizzes = []
+        //create learn quizzes
+        var terms = [], definitions = [];
+        for(var i = 0; i < cards.length; i++){
+            terms.push(cards[i].term);
+            definitions.push(cards[i].definition);
+        }
+        for(var i = 0; i < terms.length; i++){
+            var answers = [], count = 0, answerTexts = [];
+            var answer = {
+                text: terms[i],
+                correct: true
+            }
+            answers.push(answer);
+            answerTexts.push(terms[i]);
+            while(count < 3){
+                var randomTerm = terms[Math.floor(Math.random() * terms.length)];
+                if(!answerTexts.includes(randomTerm)){
+                    answer = {
+                        text: randomTerm,
+                        correct: false
+                    }
+                    answerTexts.push(randomTerm);
+                    answers.push(answer);
+                    count++;
+                }
+            }
+            var quiz = {
+                question: definitions[i],
+                answers: shuffle(answers),
+                status: 0
+            }
+            quizzes.push(quiz);
+        }
+
         return res.view('pages/learn', {
             user: req.signedCookies.user,
             cards: cards,
             set: set,
             globals: globals,
             owner: owner,
+            quizzes: shuffle(quizzes)
         });
     },
 
@@ -97,7 +133,23 @@ module.exports = {
             set: set,
             globals: globals,
             owner: owner,
-            quizzes: quizzes
+            quizzes: shuffle(quizzes)
+        });
+    },
+
+    getWrite: async function(req, res){
+        var title = req.params.title;
+        var set = await sails.models.set.findOne({ title: title });
+        var cards = await sails.models.card.find({ set_id: set.id });
+        var globals = require('../../config/globals');
+        var owner = await sails.models.user.findOne({ id: set.user_id });
+
+        return res.view('pages/write', {
+            user: req.signedCookies.user,
+            cards: shuffle(cards),
+            set: set,
+            globals: globals,
+            owner: owner,
         });
     },
 

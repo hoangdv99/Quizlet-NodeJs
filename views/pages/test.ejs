@@ -188,7 +188,10 @@
                                                                         <div class="form-check">
                                                                             <input class="form-check-input answer"
                                                                                 type="radio" name="group<%= i %>"
-                                                                                id="<%= quizzes[i].question %><%= j %>" />
+                                                                                id="<%= quizzes[i].question %><%= j %>" 
+                                                                                value="<%= quizzes[i].answers[j].correct %>"
+                                                                                />
+                                                                                
                                                                             <label
                                                                                 class="form-check-label <%= quizzes[i].answers[j].correct %>"
                                                                                 for="<%= quizzes[i].question %><%= j %>">
@@ -325,7 +328,7 @@
         gtag('config', 'UA-23581568-13');
     </script>
     <script>
-        var wrong = 0;
+        var correct = 0;
         var result = 0
         const inputs = document.querySelectorAll('input[class="answer"]');
         $('.check-answers').on('click', function () {
@@ -333,10 +336,12 @@
                 var idVal = $(this).attr("id");
                 if ($("label[for='" + idVal + "']").hasClass('false')) {
                     $("label[for='" + idVal + "']").addClass('wrong');
-                    wrong++;
                 }
             });
-            result = Math.floor((1 - wrong / '<%= quizzes.length %>')*100);
+            $("input[value='true']:checked").each(function () {
+                correct++;
+            });
+            result = Math.floor((correct / '<%= quizzes.length %>')*100);
             $('#score').text(`${result}%`);
             $('.result').removeClass('hidden');
             $('.true').addClass('correct');

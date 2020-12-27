@@ -37,14 +37,41 @@
     <link rel="stylesheet" type="text/css" href="../../css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="../../css/font-awesome-n.min.css">
 
-    <link rel="stylesheet" href="../../css/chartist.css" type="text/css" media="all">
-
     <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link rel="stylesheet" type="text/css" href="../../css/widget.css">
     <link rel="stylesheet" type="text/css" href="../../css/pages.css">
     <link rel="stylesheet" type="text/css" href="../../css/component.css">
     <link rel="stylesheet" href="../../css/custom.css">
+    <style>
+        #answer-input {
+            width: 100%;
+            outline: 0;
+            border-width: 0 0 3px;
+            border-color: black;
+        }
 
+        #answer-input:focus {
+            outline: 0;
+            border-width: 0 0 5px;
+            border-color: orange;
+        }
+
+        .question {
+            font-size: 30px;
+        }
+
+        .wrong {
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .correct {
+            font-size: 30px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -61,7 +88,7 @@
                 <div class="navbar-wrapper">
                     <div class="navbar-logo" logo-theme="theme6">
                         <a href="/">
-                            <img class="img-fluid" src="png/logo-selfmade.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="/../../png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
@@ -99,7 +126,9 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <span>Hi, <% if(user){ %><%= user.username %><% } %></span>
+                                        <span>Hi, <% if(user){ %>
+                                                <%= user.username %>
+                                                    <% } %></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
 
@@ -124,91 +153,120 @@
                     </div>
                 </div>
             </nav>
-            <div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
+            <div class="pcoded-main-container>
+                <div class=" pcoded-wrapper">
+                <nav class="pcoded-navbar">
+                    <div class="nav-list">
+                        <div class="pcoded-inner-navbar main-menu">
 
-                    <nav class="pcoded-navbar">
-                        <div class="nav-list">
-                            <div class="pcoded-inner-navbar main-menu">
-                                <ul class="pcoded-item pcoded-left-item">
-                                    <li class=" ">
-                                        <a href="/" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-home"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Home</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href='/<%= user.username %>/profile#created'
-                                            class="waves-effect waves-dark left-nav-menu">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-file"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Sets</span>
-                                        </a>
-                                    </li>
-                                    <li class=" ">
-                                        <a href="/<%= user.username %>/profile#folders" class="waves-effect waves-dark left-nav-menu">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-folder"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Folders</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
-                                            data-toggle="modal" data-target="#create-folder">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-plus"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Create a folder</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" ">
+                                    <a href="/<%= owner.username %>/<%= set.title %>"
+                                        class="waves-effect waves-dark left-nav-menu">
+                                        <span class="pcoded-micon">
+                                            <i class="feather icon-chevron-left"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Back to set page</span>
+                                    </a>
+                                </li>
+
+                                <li class=" ">
+                                    <div class="pcoded-navigation-label">
+                                        <p class="text-md-center">Remaining </p>
+
+                                        <p class="text-md-center" id="remainings">
+                                            <%= cards.length %>
+                                        </p>
+                                        <hr>
+                                        <p class="text-md-center">Correct <span>
+                                                <iclass="feather icon-check"></i>
+                                            </span></p>
+                                        <p class="text-md-center" id="corrects"></p>
+                                        <hr>
+                                        <p class="text-md-center">Incorrect <span><i class="feather icon-x"></i></span>
+                                        </p>
+                                        <p class="text-md-center" id="incorrects"></p>
+                                        <hr>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                    </nav>
-                    <div class="modal fade" id="create-folder" tabindex="-1" role="dialog"
-                        aria-labelledby="create-folder" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title " id="exampleModalLabel">Create a new folder</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="/create-folder" method="POST" id="create-folder-form">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label" for="validationDefault01">Title</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="folder_title">
+                    </div>
+                </nav>
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <div class="main-body">
+                            <input type="text" class="hidden cards-data" value="<%= JSON.stringify(cards) %>">
+                            <div class="page-wrapper">
+                                <div class="page-body">
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static"
+                                        data-keyboard="false">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title wrong hidden" id="exampleModalLabel">wrong!
+                                                    </h5>
+                                                    <h5 class="modal-title correct hidden" id="exampleModalLabel">
+                                                        Correct!</h5>
+                                                </div>
+                                                <div class="modal-body" style="font-weight: 600;">
+                                                    <p>Correct answer: <span class="answer"></span></p>
+                                                    <p class="result hidden">Result: <span class="result"></span></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary next"
+                                                        data-dismiss="modal">Next question</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="folder_description">
+                                    </div>
+                                    <div class="col-lg-12 col-xl-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="card-block">
+                                                    <div class="col-sm-12">
+                                                        <div class="question" style="height: 20rem;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="answer">
+                                                    <div class="card-block">
+                                                        <div class="col-sm-12 row">
+                                                            <div class="col-sm-10">
+                                                                <input type="text" id="answer-input" />
+                                                            </div>
+                                                            <div class="col-sm-2" id="answer-btn">
+                                                                <button type="button" data-toggle="modal"
+                                                                    data-target="#exampleModal"
+                                                                    class="btn btn-success btn-round waves-effect waves-light btn-block">Answer</button>
+                                                            </div>
+                                                            <div class="col-sm-2 hidden" id="retry-btn">
+                                                                <button type="button"
+                                                                    class="btn btn-warning btn-round waves-effect waves-light btn-block">Retry</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button form="create-folder-form" type="submit" class="btn btn-success" id="create-folder-btn">Create</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <%- body %>
-
-                    <div id="styleSelector">
-                    </div>
-
                 </div>
             </div>
+            <input type="hidden" id="set" value="<%= set.title %>" />
+            <input type="hidden" id="cards" value="<%= cards %>" />
+            <div id="styleSelector">
+            </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 
 
@@ -255,12 +313,11 @@
         <p>Sorry for the inconvenience!</p>
     </div>
 <![endif]-->
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-    
     <script type="text/javascript" src="../../js/popper.min.js"></script>
-    
+
 
     <script src="../../js/waves.min.js" type="text/javascript"></script>
 
@@ -275,7 +332,7 @@
     <script src="../../js/serial.js" type="text/javascript"></script>
     <script src="../../js/light.js" type="text/javascript"></script>
 
-    <script src="../../js/markerclusterer.js" type="text/javascript"></script>xx
+    <script src="../../js/markerclusterer.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../js/tabs.js"></script>
     <script src="../../js/pcoded.min.js" type="text/javascript"></script>
     <script src="../../js/vertical-layout.min.js" type="text/javascript"></script>
@@ -297,8 +354,64 @@
 
         gtag('config', 'UA-23581568-13');
     </script>
+    <script>
+        var cards = JSON.parse($('.cards-data').val());
+        var currentIndex, remainings = cards.length, corrects = 0, incorrects = 0, result;
+        $(document).ready(function () {
+            currentIndex = 0;
+            updateScore();
+            setNextQuestion();
+        });
+        $('#answer-btn').on('click', function () {
+            var answer = $('#answer-input').val();
+            remainings--;
+            if (answer === cards[currentIndex].term) {
+                $('.correct').removeClass('hidden');
+                $('.wrong').addClass('hidden');
+                $('.modal-body').addClass('hidden');
+                corrects++;
+            } else {
+                $('.modal-body').removeClass('hidden');
+                $('span.answer').text(cards[currentIndex].term);
+                $('.wrong').removeClass('hidden');
+                $('.correct').addClass('hidden');
+                incorrects++;
+            }
+            updateScore();
+        });
+
+        $('.next').on('click', function () {
+            currentIndex++;
+            $('#answer-input').val('');
+            $('.correct').addClass('hidden');
+            $('.wrong').addClass('hidden');
+            setNextQuestion();
+        })
+        $('#retry-btn').on('click', function(){
+            location.reload();
+        })
+
+        function setNextQuestion() {
+            if (remainings === 0) {
+                $('#answer-btn').addClass('hidden');
+                $('#retry-btn').removeClass('hidden');
+            } else {
+                showQuestion(cards[currentIndex]);
+            }
+        }
+
+        function showQuestion(card) {
+            $('.question').text(card.definition);
+        }
+
+        function updateScore() {
+            $('#remainings').text(remainings);
+            $('#corrects').text(corrects);
+            $('#incorrects').text(incorrects);
+        }
+    </script>
+    <script type="text/javascript" src="../../js/learn.js"></script>
     <script src="../../js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
-    
 </body>
 
 <!-- Mirrored from colorlib.com/polygon/admindek/default/dashboard-crm.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Dec 2019 16:08:32 GMT -->

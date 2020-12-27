@@ -40,10 +40,17 @@ module.exports.routes = {
   'GET /:title/edit': {controller: 'SetController', action: 'getEditSet'},
   'GET /:title/learn': {controller: 'SetController', action: 'getSetLearn'},
   'GET /:title/test': {controller: 'SetController', action: 'getTest'},
+  'GET /:title/write': {controller: 'SetController', action: 'getWrite'},
+  'GET /:username/folders/:folderId': {controller: 'FolderController', action: 'getFolder'},
 
   'POST /create-set': {
     controller: 'SetController',
     action: 'createData'
+  },
+
+  'POST /add-sets': {
+    controller: 'FolderController',
+    action: 'addSets'
   },
 
   'POST /create-folder': {
@@ -62,6 +69,7 @@ module.exports.routes = {
   },
 
   'POST /:title/edit': { controller: 'SetController', action: 'postEditSet'},
-  'GET /:title/delete': { controller: 'SetController', action: 'deleteSet'}
+  'GET /:title/delete': { controller: 'SetController', action: 'deleteSet'},
+  'GET /folders/:folderId/delete': {controller: 'FolderController', action: 'deleteFolder'}
 
 };
