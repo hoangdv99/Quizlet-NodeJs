@@ -1,8 +1,19 @@
 module.exports = {
-	home: function (req, res) {
+	home: async function (req, res) {
 		let user = req.signedCookies.user;
+		let sets = await sails.models.set.find({ user_id: user.id }).sort([
+			{createdAt: 'ASC'}
+		]);
+		let countTerms = [];
+		
+		for(var i = 0; i < sets.length; i++){
+			countTerms[i] = await sails.models.card.count({set_id: sets[i].id});
+		}
+
 		res.view("pages/homepage", {
-			user: user
+			user: user,
+			sets: sets,
+			countTerms: countTerms
 		})
 	},
 

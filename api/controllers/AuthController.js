@@ -45,7 +45,15 @@ module.exports = {
 		var password = req.body.password;
 		var confirmPassword = req.body.confirmPassword;
 		var errors = [];
-
+		if(username == ''){
+			errors.push("Username requires!");
+		}
+		if(email == ''){
+			errors.push("Email requires!");
+		}
+		if(password == ''){
+			errors.push("Password requires!");
+		}
 		var existedEmail = await sails.models.user.find({
 			email: email
 		});

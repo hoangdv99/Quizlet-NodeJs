@@ -1,95 +1,71 @@
 <div class="pcoded-content">
-
-    <div class="page-header card">
-        <div class="row align-items-end">
-            <div class="col-lg-8">
-                <div class="page-header-title">
-                    <i class="feather icon-home bg-c-blue"></i>
-                    <div class="d-inline">
-                        <h5>Recent</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="page-header-breadcrumb">
-                    <ul class=" breadcrumb breadcrumb-title">
-                        <li class="breadcrumb-item"><a href="/<%= user.username %>/profile#created">View all</a> </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="page-header">
     </div>
-
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="col-sm-12 row">
+                                        <div class="col-sm-8">
+                                            <h3
+                                                style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">
+                                                Become your most unstoppable self</h3>
+                                            <br>
+                                            <ul class="basic-list list-icons" style="border-bottom: none;">
+                                                <li style="border-bottom: none;">
+                                                    <i
+                                                        class="icofont icofont-check text-success p-absolute text-center d-block f-30"></i>
+                                                    <h6 style="font-weight: 800;">Create sets</h6>
+                                                    <p>From flashcards to help you learn French to games that make it
+                                                        easy to understand history, you can use a variety of tools to
+                                                        conquer any challenge.</p>
+                                                </li>
+                                                <li style="border-bottom: none;">
+                                                    <h6 style="font-weight: 800;">Create folders</h6>
+                                                    <i
+                                                        class="icofont icofont-check text-success p-absolute text-center d-block f-30"></i>
+                                                    <p>Sets management by creating folders</p>
+                                                </li>
+                                                <li style="border-bottom: none;">
+                                                    <h6 style="font-weight: 800;">Learn and Test</h6>
+                                                    <i
+                                                        class="icofont icofont-check text-success p-absolute text-center d-block f-30"></i>
+                                                    <p>90% of students report receiving higher marks.</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4"
+                                            style="background-image: url(../../png/copy3.png); background-repeat: no-repeat;">
 
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card prod-p-card card-red">
-                                <div class="card-body">
-                                    <div class="row align-items-center m-b-30">
-                                        <div class="col">
-                                            <h6 class="m-b-5 text-white">Toeic Master</h6>
-                                            <h3 class="m-b-0 f-w-700 text-white">1000 terms</h3>
                                         </div>
                                     </div>
-                                    <p class="m-b-0 text-white">Progress<span
-                                            class="label label-danger m-r-10">80%</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card prod-p-card card-blue">
-                                <div class="card-body">
-                                    <div class="row align-items-center m-b-30">
-                                        <div class="col">
-                                            <h6 class="m-b-5 text-white">Mimikara Oboeru N1</h6>
-                                            <h3 class="m-b-0 f-w-700 text-white">2000 terms</h3>
-                                        </div>
-                                    </div>
-                                    <p class="m-b-0 text-white">Progress<span
-                                            class="label label-primary m-r-10">12%</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card prod-p-card card-green">
-                                <div class="card-body">
-                                    <div class="row align-items-center m-b-30">
-                                        <div class="col">
-                                            <h6 class="m-b-5 text-white">Average Price</h6>
-                                            <h3 class="m-b-0 f-w-700 text-white">6,780 terms</h3>
-                                        </div>
-
-                                    </div>
-                                    <p class="m-b-0 text-white">Progress<span
-                                            class="label label-success m-r-10">52%</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card prod-p-card card-yellow">
-                                <div class="card-body">
-                                    <div class="row align-items-center m-b-30">
-                                        <div class="col">
-                                            <h6 class="m-b-5 text-white">Product Sold</h6>
-                                            <h3 class="m-b-0 f-w-700 text-white">6,784 terms</h3>
-                                        </div>
-
-                                    </div>
-                                    <p class="m-b-0 text-white">Progress<span
-                                            class="label label-warning m-r-10">52%</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <h4 style="font-weight: bold;">Recent</h4>
+                        <div class="row">
+                            <% for(var i = 0; i < sets.length; i++){ %>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card prod-p-card card-green">
+                                        <div class="card-body">
+                                            <div class="row align-items-center m-b-30">
+                                                <div class="col">
+                                                    <a href="/<%= user.username %>/<%= sets[i].title %>"><h3 class="m-b-5 text-white"><%= sets[i].title %></h3></a>
+                                                    <h6 class="m-b-0 f-w-700 text-white"><%= countTerms[i] %> Term</h6>
+                                                </div>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

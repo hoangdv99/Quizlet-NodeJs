@@ -185,11 +185,6 @@
 
                                 <div class="col-lg-2">
                                     <% if(owner.username===user.username){ %>
-                                        <a type="button" class="btn btn-success btn-icon waves-effect waves-light"
-                                            data-toggle="tooltip" data-placement="top" title="Add set to folder or class">
-                                            <i class="icofont icofont-plus"></i>
-                                        </a>
-
                                         <a type="button" href="/<%= set.title %>/edit"
                                             class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
                                             data-placement="top" title="Edit">
@@ -279,69 +274,34 @@
                                         </div>
                                         <br>
                                         <h4 class="font-weight-bold">Terms in this set (<%= cards.length %>)</h4>
-                                        <% var studiedCards=[], notStudiedCards=[] %>
-                                            <% for(var i=0; i < cards.length; i++){ %>
-                                                <% if(cards[i].status==globals.CardStatus.Remembered)
-                                                    {studiedCards.push(cards[i])} else{notStudiedCards.push(cards[i])}%>
+                            
+                                            
+                                                <div class="card">
+                                                    <% for(var i=0; i < cards.length; i++){ %>
+                                                    <div class="card-block">
+                                                        <div class="row col-sm-12">
+                                                            <div class="col-sm-12 col-xl-4">
+                                                                <p>
+                                                                    <%= cards[i].term %>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-7">
+                                                                <p>
+                                                                    <%= cards[i].definition %>
+                                                                </p>
+                                                            </div>
+                                                            <% if(owner.username===user.username){ %>
+                                                                <a class="col-sm-12 col-xl-1"
+                                                                    href="/<%= set.title %>/edit"><i
+                                                                        class="feather icon-edit"></i>
+                                                                </a>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
                                                     <% } %>
-                                                        <br>
-                                                        <h5 class="font-weight-bold text-warning">Studied(<%=
-                                                                studiedCards.length %>)
-                                                        </h5>
-                                                        <br>
-                                                        <div class="card">
-                                                            <% for(var i=0; i < studiedCards.length; i++){ %>
-                                                                <div class="card-block">
-                                                                    <div class="row col-sm-12">
-                                                                        <div class="col-sm-12 col-xl-4">
-                                                                            <p>
-                                                                                <%= studiedCards[i].term %>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-xl-7">
-                                                                            <p>
-                                                                                <%= studiedCards[i].definition %>
-                                                                            </p>
-                                                                        </div>
-                                                                        <% if(owner.username===user.username){ %>
-                                                                            <a class="col-sm-12 col-xl-1"
-                                                                                href="/<%= set.title %>"><i
-                                                                                    class="feather icon-edit"></i>
-                                                                            </a>
-                                                                            <% } %>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                <% } %>
-                                                        </div>
-                                                        <h5 class="font-weight-bold text-primary">Not
-                                                            studied(<%= notStudiedCards.length %>)</h5>
-                                                        <br>
-                                                        <div class="card">
-                                                            <% for(var i=0; i < notStudiedCards.length; i++){ %>
-                                                                <div class="card-block">
-                                                                    <div class="row col-sm-12">
-                                                                        <div class="col-sm-12 col-xl-4">
-                                                                            <p>
-                                                                                <%= notStudiedCards[i].term %>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-xl-7">
-                                                                            <p>
-                                                                                <%= notStudiedCards[i].definition %>
-                                                                            </p>
-                                                                        </div>
-                                                                        <% if(owner.username===user.username){ %>
-                                                                            <a class="col-sm-12 col-xl-1"
-                                                                                href="/<%= set.title %>/edit"><i
-                                                                                    class="feather icon-edit"></i>
-                                                                            </a>
-                                                                            <% } %>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                <% } %>
-                                                        </div>
+                                                </div>
+                                                
                                     </div>
 
                                 </div>

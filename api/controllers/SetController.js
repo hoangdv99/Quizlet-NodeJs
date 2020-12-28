@@ -160,7 +160,6 @@ module.exports = {
         let privacy = parseInt(req.body.privacy);
         let terms = req.body.term;
         let definitions = req.body.definition;
-        let folderId = -1;
         let errors = [];
         let user = req.signedCookies.user;
         let set = await sails.models.set.findOne({ title: oldTitle });
@@ -176,7 +175,6 @@ module.exports = {
             });
         } else {
             await sails.models.set.updateOne({ title: oldTitle }).set({
-                folder_id: folderId,
                 title: title,
                 description: description,
                 privacy: privacy,
@@ -203,7 +201,6 @@ module.exports = {
         let privacy = parseInt(req.body.privacy);
         let terms = req.body.term;
         let definitions = req.body.definition;
-        let folderId = -1;
         let errors = [];
         let user = req.signedCookies.user;
 
@@ -232,7 +229,6 @@ module.exports = {
         } else {
             let createdSet = await sails.models.set.create({
                 user_id: user.id,
-                folder_id: folderId,
                 title: title,
                 description: description,
                 privacy: privacy,
