@@ -1,3 +1,4 @@
+const { set } = require('grunt');
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -26,7 +27,7 @@ module.exports = {
     },
     getEditSet: async function (req, res) {
         var currentUser = req.signedCookies.user;
-        var set = await sails.models.set.findOne({ title: req.params.title });
+        var set = await sails.models.set.findOne({ id: req.params.id });
         var cards = await sails.models.card.find({ set_id: set.id });
         res.view('pages/edit-set', {
             user: currentUser,
@@ -35,8 +36,8 @@ module.exports = {
         });
     },
     getSetLearn: async function (req, res) {
-        var title = req.params.title;
-        var set = await sails.models.set.findOne({ title: title });
+        var setId = req.params.setId;
+        var set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
@@ -87,8 +88,8 @@ module.exports = {
     },
 
     getTest: async function(req, res){
-        var title = req.params.title;
-        var set = await sails.models.set.findOne({ title: title });
+        var setId = req.params.setId;
+        var set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
@@ -138,8 +139,8 @@ module.exports = {
     },
 
     getWrite: async function(req, res){
-        var title = req.params.title;
-        var set = await sails.models.set.findOne({ title: title });
+        var setId = req.params.setId;
+        var set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
@@ -154,7 +155,7 @@ module.exports = {
     },
 
     postEditSet: async function (req, res) {
-        let oldTitle = req.params.title;
+        let setId = req.params.setId;
         let title = req.body.title;
         let description = req.body.description;
         let privacy = parseInt(req.body.privacy);
@@ -162,10 +163,10 @@ module.exports = {
         let definitions = req.body.definition;
         let errors = [];
         let user = req.signedCookies.user;
-        let set = await sails.models.set.findOne({ title: oldTitle });
+        let set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         let existedSet = await sails.models.set.findOne({ title: title });
-        if (existedSet) {
+        if (existedSet && existedSet.title !== oldTitle ) {
             errors.push("Set title existed!");
             return res.view('pages/edit-set', {
                 errors: errors,
@@ -174,7 +175,7 @@ module.exports = {
                 cards: cards
             });
         } else {
-            await sails.models.set.updateOne({ title: oldTitle }).set({
+            await sails.models.set.updateOne({ id: setId }).set({
                 title: title,
                 description: description,
                 privacy: privacy,
@@ -191,7 +192,7 @@ module.exports = {
                     status: 1
                 });
             }
-            res.redirect(`/${user.username}/${title}`);
+            res.redirect(`/${user.username}/${setId}`);
         }
     },
 
@@ -203,10 +204,13 @@ module.exports = {
         let definitions = req.body.definition;
         let errors = [];
         let user = req.signedCookies.user;
+        let owner = await sails.models.user.findOne({ username: user.username });
 
-        let existedSet = await sails.models.set.findOne({ title: title });
-        if (existedSet) {
-            errors.push("Set title existed!");
+        let existedSet = await sails.models.set.find({ title: title });
+        for (let i = 0; i < existedSet.length; i++) {
+            if(existedSet[i].title === title && existedSet[i].user_id === owner.id){
+                errors.push("Title duplicated!");
+            }
         }
         if(title === ''){
             errors.push('Title requires!');
@@ -242,17 +246,16 @@ module.exports = {
                     status: 1
                 });
             }
-            res.redirect(`/${user.username}/${title}`);
+            res.redirect(`/${user.username}/${createdSet.id}`);
         }
     },
     getSet: async function (req, res) {
-        var title = req.params.title;
-        var set = await sails.models.set.findOne({ title: title });
+        var setId = req.params.setId;
+        var set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
-        console.log(owner);
-        console.log(req.signedCookies.user);
+        
         if (req.signedCookies.user.username != owner.username && set.privacy === globals.PrivacyConst.Private) {
             res.view('pages/protected-set', {
                 user: req.signedCookies.user
@@ -269,8 +272,8 @@ module.exports = {
     },
 
     deleteSet: async function (req, res) {
-        var title = req.params.title;
-        await sails.models.set.destroy({ title: title });
+        var setId = req.params.setId;
+        await sails.models.set.destroy({ id: setId });
         res.redirect(`/${req.signedCookies.user.username}/profile#created`);
     }
 }

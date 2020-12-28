@@ -4,7 +4,7 @@
         <div class="row align-items-end">
             <div class="col-lg-10">
                 <div class="page-header-title">
-                    <a href="/<%= user.username %>/<%= set.title %>" style="font-size: large; font-weight: bold;">< Back to set</a>
+                    <a href="/<%= user.username %>/<%= set.id %>" style="font-size: large; font-weight: bold;">< Back to set</a>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                             <div class="card">
 
                                 <div class="card-block">
-                                    <form id="main" method="POST" action="/<%= set.title %>/edit">
+                                    <form id="main" method="POST" action="/<%= set.id %>/edit">
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Title</label>
                                             <div class="col-sm-10">

@@ -36,11 +36,11 @@ module.exports.routes = {
   ***************************************************************************/
   'GET /:username/profile': { controller: 'ProfileController', action: 'getProfile'},
   'GET /:username/create-set': {controller: 'SetController', action: 'getCreateSet'},
-  'GET /:username/:title': {controller: 'SetController', action: 'getSet'},
-  'GET /:title/edit': {controller: 'SetController', action: 'getEditSet'},
-  'GET /:title/learn': {controller: 'SetController', action: 'getSetLearn'},
-  'GET /:title/test': {controller: 'SetController', action: 'getTest'},
-  'GET /:title/write': {controller: 'SetController', action: 'getWrite'},
+  'GET /:username/:setId': {controller: 'SetController', action: 'getSet'},
+  'GET /:setId/edit': {controller: 'SetController', action: 'getEditSet'},
+  'GET /:setId/learn': {controller: 'SetController', action: 'getSetLearn'},
+  'GET /:setId/test': {controller: 'SetController', action: 'getTest'},
+  'GET /:setId/write': {controller: 'SetController', action: 'getWrite'},
   'GET /:username/folders/:folderId': {controller: 'FolderController', action: 'getFolder'},
 
   'POST /create-set': {
@@ -68,8 +68,8 @@ module.exports.routes = {
     action: 'register'
   },
 
-  'POST /:title/edit': { controller: 'SetController', action: 'postEditSet'},
-  'GET /:title/delete': { controller: 'SetController', action: 'deleteSet'},
+  'POST /:setId/edit': { controller: 'SetController', action: 'postEditSet'},
+  'GET /:setId/delete': { controller: 'SetController', action: 'deleteSet'},
   'GET /folders/:folderId/delete': {controller: 'FolderController', action: 'deleteFolder'},
   'GET /folders/:folderId/:setId/remove': {controller: 'FolderController', action: 'removeSet'}
 };

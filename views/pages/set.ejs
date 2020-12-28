@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Admindek | Admin Template</title>
+    <title>OW</title>
 
 
     <!--[if lt IE 10]>
@@ -142,7 +142,7 @@
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="/<%= set.title %>/learn" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="/<%= set.id %>/learn" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-book"></i>
                                             </span>
@@ -150,7 +150,7 @@
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="/<%= set.title %>/write" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="/<%= set.id %>/write" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-edit"></i>
                                             </span>
@@ -158,7 +158,7 @@
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="/<%= set.title %>/test" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="/<%= set.id %>/test" class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
                                                 <i class="fa fa-check-square"></i>
                                             </span>
@@ -185,12 +185,12 @@
 
                                 <div class="col-lg-2">
                                     <% if(owner.username===user.username){ %>
-                                        <a type="button" href="/<%= set.title %>/edit"
+                                        <a type="button" href="/<%= set.id %>/edit"
                                             class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
                                             data-placement="top" title="Edit">
                                             <i class="icofont icofont-edit"></i>
                                         </a>
-                                        <a type="button" href="/<%= set.title%>/delete"
+                                        <a type="button" href="/<%= set.id%>/delete"
                                             onclick="return confirm('Are you sure to delete this set?')"
                                             class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip"
                                             data-placement="top" title="Remove">
@@ -292,7 +292,7 @@
                                                             </div>
                                                             <% if(owner.username===user.username){ %>
                                                                 <a class="col-sm-12 col-xl-1"
-                                                                    href="/<%= set.title %>/edit"><i
+                                                                    href="/<%= set.id %>/edit"><i
                                                                         class="feather icon-edit"></i>
                                                                 </a>
                                                                 <% } %>
