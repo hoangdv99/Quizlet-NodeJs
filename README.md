@@ -1,10 +1,8 @@
 # Introduce
-***
 - IT4552 web programming practice's project
 - Vocabulary / concept learning website
 
 # Built with
-***
 ### Front-end
 - [JQuery](https://jquery.com/)
 - [Bootstrap 4](https://getbootstrap.com/)
@@ -12,7 +10,6 @@
 - [SailsJS](https://sailsjs.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 # Getting started
-***
 ### Pre-installation
 - npm
     ```
