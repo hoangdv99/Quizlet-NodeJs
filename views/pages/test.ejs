@@ -188,15 +188,14 @@
                                                                         <div class="form-check">
                                                                             <input class="form-check-input answer"
                                                                                 type="radio" name="group<%= i %>"
-                                                                                id="<%= quizzes[i].question %><%= j %>" 
-                                                                                value="<%= quizzes[i].answers[j].correct %>"
-                                                                                />
-                                                                                
+                                                                                id="<%= quizzes[i].question %><%= j %>"
+                                                                                value="<%= quizzes[i].answers[j].correct %>" />
+
                                                                             <label
                                                                                 class="form-check-label <%= quizzes[i].answers[j].correct %>"
                                                                                 for="<%= quizzes[i].question %><%= j %>">
                                                                                 <%= quizzes[i].answers[j].text %>
-                                                                                    
+
                                                                             </label>
                                                                         </div>
 
@@ -341,14 +340,24 @@
             $("input[value='true']:checked").each(function () {
                 correct++;
             });
-            result = Math.floor((correct / '<%= quizzes.length %>')*100);
+            result = Math.floor((correct / '<%= quizzes.length %>') * 100);
             $('#score').text(`${result}%`);
             $('.result').removeClass('hidden');
             $('.true').addClass('correct');
             $('.check-answers').addClass('hidden');
             $('.retry').removeClass('hidden');
         });
-        $('.retry').on('click', function(){
+        $(document).ready(function () {
+            $('.check-answers').click(function () {
+                var input = this;
+                input.disabled = true;
+                setTimeout(function () {
+                    input.disabled = false;
+                }, 3000);
+
+            });
+        });
+        $('.retry').on('click', function () {
             location.reload();
         })
     </script>
