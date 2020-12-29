@@ -28,5 +28,8 @@ module.exports = {
 
 	profile: function(req, res) {
 		return res.view('pages/profile')
+	},
+	getStarted: function(req, res){
+		return res.view('pages/lp', {layout: null});
 	}
 }

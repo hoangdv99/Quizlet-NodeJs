@@ -34,7 +34,7 @@ module.exports = {
         })
         
         for(var i = 0; i < notInFolder.length; i++){
-            var notInFolderSet = await sails.models.set.findOne({title: notInFolder[i]});
+            var notInFolderSet = await sails.models.set.findOne({title: notInFolder[i], user_id: curUser.id});
             notInFolderSets.push(notInFolderSet);
         }
 
@@ -52,12 +52,11 @@ module.exports = {
         var folderId = req.body.folderId;
         var setsCheck = req.body.set;
         var user = await sails.models.user.findOne({username: req.signedCookies.user.username });
-        var curUserSets = await sails.models.set.find({user_id: user.id});
         var setTitles = req.body.setTitle;
 
         for(var i = 0; i < setTitles.length; i++){
             if(setsCheck[i] === setTitles[i] || setsCheck === setTitles[i]){
-                var set = await sails.models.set.findOne({title: setTitles[i]});
+                var set = await sails.models.set.findOne({title: setTitles[i], user_id: user.id});
                 await sails.models.folder.addToCollection(folderId, 'sets', set.id);
             }
         }

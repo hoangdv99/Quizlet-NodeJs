@@ -71,5 +71,7 @@ module.exports.routes = {
   'POST /:setId/edit': { controller: 'SetController', action: 'postEditSet'},
   'GET /:setId/delete': { controller: 'SetController', action: 'deleteSet'},
   'GET /folders/:folderId/delete': {controller: 'FolderController', action: 'deleteFolder'},
-  'GET /folders/:folderId/:setId/remove': {controller: 'FolderController', action: 'removeSet'}
+  'GET /folders/:folderId/:setId/remove': {controller: 'FolderController', action: 'removeSet'},
+  'GET /lp': {controller: 'PageController', action: 'getStarted'}
+  
 };

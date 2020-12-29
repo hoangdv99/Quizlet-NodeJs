@@ -23,7 +23,7 @@ module.exports = {
 					res.redirect("/");
 				}
 			} else {
-				res.redirect("/login");
+				res.redirect("/lp");
 			}
 		});
 	},
