@@ -192,6 +192,15 @@
                                             <span class="pcoded-mtext">Create a folder</span>
                                         </a>
                                     </li>
+                                    <li>
+                                        <a type="button" class="waves-effect waves-dark left-nav-menu"
+                                            data-toggle="modal" data-target="#change-password">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-expeditedssl"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Change password</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -226,6 +235,46 @@
                                 <div class="modal-footer">
                                     <button form="create-folder-form" type="submit" class="btn btn-success"
                                         id="create-folder-btn">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="change-password" tabindex="-1" role="dialog"
+                        aria-labelledby="change-password" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title " id="exampleModalLabel">Change password</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/change" method="POST" id="change-password-form">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label"
+                                                for="validationDefault01">Current password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="current_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">New password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="new_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Confirm password</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" name="confirm_password">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button form="change-password-form" type="submit" class="btn btn-success"
+                                        id="change-password-btn">Change</button>
                                 </div>
                             </div>
                         </div>

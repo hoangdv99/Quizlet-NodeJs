@@ -49,7 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-postgresql',
-    url: 'postgresql://postgres:hoangdv257@localhost:5432/quizlet',
+    url: 'postgresql://postgres:quocthang199@localhost:5432/quizlet',
   },
 
 

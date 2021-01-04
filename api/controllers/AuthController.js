@@ -45,13 +45,13 @@ module.exports = {
 		var password = req.body.password;
 		var confirmPassword = req.body.confirmPassword;
 		var errors = [];
-		if(username == ''){
+		if (username == '') {
 			errors.push("Username requires!");
 		}
-		if(email == ''){
+		if (email == '') {
 			errors.push("Email requires!");
 		}
-		if(password == ''){
+		if (password == '') {
 			errors.push("Password requires!");
 		}
 		var existedEmail = await sails.models.user.find({
@@ -95,6 +95,53 @@ module.exports = {
 		}
 	},
 
+	change: async function (req, res) {
+		var current_password = req.body.current_password;
+		var new_password = req.body.new_password;
+		var confirm_password = req.body.confirm_password;
+		let loginUser = req.signedCookies.user;
+		var errors = [];
+		if (current_password == '') {
+			errors.push("Current password requires!");
+		}
+		if (new_password == '') {
+			errors.push("New password requires!");
+		}
+		if (confirm_password == '') {
+			errors.push("You need to confirm the new password!");
+		}
+
+		if (bcrypt.compareSync(current_password, loginUser.password)) {
+			if (new_password != confirm_password) {
+				errors.push("New password and confirm password don't match!");
+			} else {
+				if (errors.length !== 0) {
+					res.view("pages/", {
+						layout: null,
+						errors: errors,
+					});
+				} else {
+					bcrypt.genSalt(10, function (err, salt) {
+						bcrypt.hash(new_password, salt, async function (err, hash) {
+							if (err) {
+								console.log(err);
+							}
+							var updatedPassword = hash;
+							var updatedUser = await User.updateOne({ loginUser })
+								.set({
+									password: updatedPassword
+								});
+						});
+					});
+					res.clearCookie('user', { path: '/' });
+					res.redirect("/logout");
+				}
+			}
+		} else {
+			errors.push("Wrong current password!");
+		}
+	},
+
 	login: async function (req, res) {
 		var username = req.body.username;
 		var password = req.body.password;
@@ -103,7 +150,7 @@ module.exports = {
 		var user = await sails.models.user.findOne({ username: username });
 		if (user) {
 			if (bcrypt.compareSync(password, user.password)) {
-				res.clearCookie('user', {path: '/'});
+				res.clearCookie('user', { path: '/' });
 				res.cookie(
 					"user",
 					{
@@ -128,7 +175,7 @@ module.exports = {
 	},
 
 	logout: function (req, res) {
-		res.clearCookie('user', {path: '/'});
+		res.clearCookie('user', { path: '/' });
 		res.redirect("/login");
 	},
 
