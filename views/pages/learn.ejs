@@ -104,16 +104,22 @@
                         <ul class="nav-left">
                             <li class="header-search">
                                 <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close">
-                                            <i class="feather icon-x input-group-text"></i>
-                                        </span>
-
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn">
-                                            <i class="feather icon-search input-group-text"></i>
-                                        </span>
-                                    </div>
+                                    <form action="/search" method="POST" name="search-form">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend search-close">
+                                                <i class="feather icon-x input-group-text"></i>
+                                            </span>
+    
+                                            <input type="text" class="form-control" id="search-input" name="keyword"
+                                                placeholder="Enter Keyword">
+                                            <span class="input-group-append search-btn search-1">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                            <span class="input-group-append search-btn search-2 hidden" onclick="document.forms['search-form'].submit();">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </li>
                             <li>
@@ -347,7 +353,14 @@
         var quizzes = JSON.parse($('.quizzes-data').val());
         var currentIndex, remaining = quizzes, familiar = [];
         $(document).ready(function () {
-            console.log(quizzes)
+            $('.search-1').on('click', function(){
+                $('.search-1').addClass('hidden');
+                $('.search-2').removeClass('hidden');
+            });
+            $('.search-close').on('click', function(){
+                $('.search-1').removeClass('hidden');
+                $('.search-2').addClass('hidden');
+            });
             currentIndex = 0;
             updateScore();
             setNextQuestion();

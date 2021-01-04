@@ -27,7 +27,7 @@ module.exports = {
     },
     getEditSet: async function (req, res) {
         var currentUser = req.signedCookies.user;
-        var set = await sails.models.set.findOne({ id: req.params.id });
+        var set = await sails.models.set.findOne({ id: req.params.setId });
         var cards = await sails.models.card.find({ set_id: set.id });
         res.view('pages/edit-set', {
             user: currentUser,
@@ -165,8 +165,8 @@ module.exports = {
         let user = req.signedCookies.user;
         let set = await sails.models.set.findOne({ id: setId });
         var cards = await sails.models.card.find({ set_id: set.id });
-        let existedSet = await sails.models.set.findOne({ title: title });
-        if (existedSet && existedSet.title !== oldTitle ) {
+        let existedSet = await sails.models.set.find({ title: title });
+        if (existedSet.length && existedSet.user_id === user.id ) {
             errors.push("Set title existed!");
             return res.view('pages/edit-set', {
                 errors: errors,
@@ -255,6 +255,8 @@ module.exports = {
         var cards = await sails.models.card.find({ set_id: set.id });
         var globals = require('../../config/globals');
         var owner = await sails.models.user.findOne({ id: set.user_id });
+        var currUser = await sails.models.user.findOne({username: req.signedCookies.user.username});
+        var folders = await sails.models.folder.find({ user_id: currUser.id });
         
         if (req.signedCookies.user.username != owner.username && set.privacy === globals.PrivacyConst.Private) {
             res.view('pages/protected-set', {
@@ -266,8 +268,17 @@ module.exports = {
                 cards: cards,
                 set: set,
                 globals: globals,
-                owner: owner
+                owner: owner,
+                folders: folders
             });
+        }
+    },
+
+    addToFolder: async function(req, res){
+        var folders = req.body.folders;
+        for(var i = 0; i < folders.length; i++){
+            var folder = await sails.models.folder.findOne({ title: folders[i], user_id: req.body.userId });
+            await sails.models.folder.addToCollection(folder.id, "sets", req.body.setId);
         }
     },
 

@@ -23,7 +23,7 @@ module.exports.routes = {
   'GET /login': { controller: 'PageController', action: 'login' },
   'GET /register': {controller: 'PageController', action: 'register'},
   'GET /logout' : {controller: 'AuthController', action: 'logout'},
-
+  'POST /search': {controller: 'PageController', action: 'search'},
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -46,6 +46,11 @@ module.exports.routes = {
   'POST /create-set': {
     controller: 'SetController',
     action: 'createData'
+  },
+
+  'POST /add-to-folder':{
+    controller: 'SetController',
+    action: 'addToFolder'
   },
 
   'POST /add-sets': {

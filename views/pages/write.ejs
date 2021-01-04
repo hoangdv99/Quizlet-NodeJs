@@ -43,9 +43,10 @@
     <link rel="stylesheet" type="text/css" href="../../css/component.css">
     <link rel="stylesheet" href="../../css/custom.css">
     <style>
-        .hidden{
+        .hidden {
             display: none !important;
         }
+
         #answer-input {
             width: 100%;
             outline: 0;
@@ -91,7 +92,7 @@
                 <div class="navbar-wrapper">
                     <div class="navbar-logo" logo-theme="theme6">
                         <a href="/">
-                            <img class="img-fluid" src="/../../png/logo-selfmade.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="../../png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
@@ -104,16 +105,23 @@
                         <ul class="nav-left">
                             <li class="header-search">
                                 <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close">
-                                            <i class="feather icon-x input-group-text"></i>
-                                        </span>
+                                    <form action="/search" method="POST" name="search-form">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend search-close">
+                                                <i class="feather icon-x input-group-text"></i>
+                                            </span>
 
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn">
-                                            <i class="feather icon-search input-group-text"></i>
-                                        </span>
-                                    </div>
+                                            <input type="text" class="form-control" id="search-input" name="keyword"
+                                                placeholder="Enter Keyword">
+                                            <span class="input-group-append search-btn search-1">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                            <span class="input-group-append search-btn search-2 hidden"
+                                                onclick="document.forms['search-form'].submit();">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </li>
                             <li>
@@ -316,9 +324,10 @@
         <p>Sorry for the inconvenience!</p>
     </div>
 <![endif]-->
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="../../js/popper.min.js"></script>
     <script src="../../js/waves.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../js/jquery.slimscroll.js"></script>
@@ -361,6 +370,14 @@
             updateScore();
             setNextQuestion();
         });
+        $('.search-1').on('click', function () {
+            $('.search-1').addClass('hidden');
+            $('.search-2').removeClass('hidden');
+        });
+        $('.search-close').on('click', function () {
+            $('.search-1').removeClass('hidden');
+            $('.search-2').addClass('hidden');
+        });
         $('#answer-btn').on('click', function () {
             var answer = $('#answer-input').val();
             remainings--;
@@ -386,7 +403,7 @@
             $('.wrong').addClass('hidden');
             setNextQuestion();
         })
-        $('#retry-btn').on('click', function(){
+        $('#retry-btn').on('click', function () {
             location.reload();
         })
 

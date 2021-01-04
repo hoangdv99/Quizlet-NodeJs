@@ -44,13 +44,18 @@
     <link rel="stylesheet" type="text/css" href="../../css/pages.css">
     <link rel="stylesheet" type="text/css" href="../../css/component.css">
     <link rel="stylesheet" href="../../css/custom.css">
-
 </head>
 <style>
-    .hidden{
+    .hidden {
         display: none !important;
     }
+
+    .set-card:hover {
+        border-bottom: solid 5px orange;
+    }
+
 </style>
+
 <body>
 
     <div class="loader-bg">
@@ -61,11 +66,11 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
-            <nav class="navbar header-navbar pcoded-header " header-theme="theme6">
+            <nav class="navbar header-navbar pcoded-header " header-theme="theme4">
                 <div class="navbar-wrapper">
-                    <div class="navbar-logo" logo-theme="theme6">
+                    <div class="navbar-logo" logo-theme="theme4">
                         <a href="/">
-                            <img class="img-fluid" src="png/logo-selfmade.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="../../png/logo-selfmade.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="feather icon-menu icon-toggle-right"></i>
@@ -77,18 +82,33 @@
                     <div class="navbar-container container-fluid">
                         <ul class="nav-left">
                             <li class="header-search">
-                                <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close">
-                                            <i class="feather icon-x input-group-text"></i>
-                                        </span>
-
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn">
-                                            <i class="feather icon-search input-group-text"></i>
-                                        </span>
+                                <!-- <form class="form-inline">
+                                    <div class="">
+                                        <input class="form-control mr-sm-2 search-input" type="text" placeholder="Enter keyword"
+                                            aria-label="Search">
                                     </div>
+                                    <button class="btn search-btn"
+                                        type="submit">Search</button>
+                                </form> -->
+                                <div class="main-search morphsearch-search">
+                                    <form action="/search" method="POST" name="search-form">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend search-close">
+                                                <i class="feather icon-x input-group-text"></i>
+                                            </span>
+    
+                                            <input type="text" class="form-control" id="search-input" name="keyword"
+                                                placeholder="Enter Keyword">
+                                            <span class="input-group-append search-btn search-1">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                            <span class="input-group-append search-btn search-2 hidden" onclick="document.forms['search-form'].submit();">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
+
                             </li>
                             <li>
                                 <a href="/<%= user.username %>/create-set">
@@ -103,7 +123,9 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <span>Hi, <% if(user){ %><%= user.username %><% } %></span>
+                                        <span>Hi, <% if(user){ %>
+                                                <%= user.username %>
+                                                    <% } %></span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
 
@@ -153,7 +175,8 @@
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="/<%= user.username %>/profile#folders" class="waves-effect waves-dark left-nav-menu">
+                                        <a href="/<%= user.username %>/profile#folders"
+                                            class="waves-effect waves-dark left-nav-menu">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-folder"></i>
                                             </span>
@@ -186,7 +209,8 @@
                                 <div class="modal-body">
                                     <form action="/create-folder" method="POST" id="create-folder-form">
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label" for="validationDefault01">Title</label>
+                                            <label class="col-sm-2 col-form-label"
+                                                for="validationDefault01">Title</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="folder_title">
                                             </div>
@@ -200,15 +224,16 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button form="create-folder-form" type="submit" class="btn btn-success" id="create-folder-btn">Create</button>
+                                    <button form="create-folder-form" type="submit" class="btn btn-success"
+                                        id="create-folder-btn">Create</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <%- body %>
 
-                    <div id="styleSelector">
-                    </div>
+                        <div id="styleSelector">
+                        </div>
 
                 </div>
             </div>
@@ -262,9 +287,9 @@
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-    
+
     <script type="text/javascript" src="../../js/popper.min.js"></script>
-    
+
 
     <script src="../../js/waves.min.js" type="text/javascript"></script>
 
@@ -302,7 +327,19 @@
         gtag('config', 'UA-23581568-13');
     </script>
     <script src="../../js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
-    
+    <script>
+        
+        $(document).ready(function(){
+            $('.search-1').on('click', function(){
+                $('.search-1').addClass('hidden');
+                $('.search-2').removeClass('hidden');
+            });
+            $('.search-close').on('click', function(){
+                $('.search-1').removeClass('hidden');
+                $('.search-2').addClass('hidden');
+            });
+        })
+    </script>
 </body>
 
 <!-- Mirrored from colorlib.com/polygon/admindek/default/dashboard-crm.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Dec 2019 16:08:32 GMT -->

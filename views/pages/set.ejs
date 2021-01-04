@@ -79,16 +79,23 @@
                         <ul class="nav-left">
                             <li class="header-search">
                                 <div class="main-search morphsearch-search">
-                                    <div class="input-group">
-                                        <span class="input-group-prepend search-close">
-                                            <i class="feather icon-x input-group-text"></i>
-                                        </span>
+                                    <form action="/search" method="POST" name="search-form">
+                                        <div class="input-group">
+                                            <span class="input-group-prepend search-close">
+                                                <i class="feather icon-x input-group-text"></i>
+                                            </span>
 
-                                        <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn">
-                                            <i class="feather icon-search input-group-text"></i>
-                                        </span>
-                                    </div>
+                                            <input type="text" class="form-control" id="search-input" name="keyword"
+                                                placeholder="Enter Keyword">
+                                            <span class="input-group-append search-btn search-1">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                            <span class="input-group-append search-btn search-2 hidden"
+                                                onclick="document.forms['search-form'].submit();">
+                                                <i class="feather icon-search input-group-text"></i>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </li>
                             <li>
@@ -187,9 +194,50 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="create-folder-1" tabindex="-1" role="dialog"
+                                aria-labelledby="create-folder" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title " id="exampleModalLabel">Create a new folder</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/create-folder" method="POST" id="create-folder-form">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label"
+                                                        for="validationDefault01">Title</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" name="folder_title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Description</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"
+                                                            name="folder_description">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button form="create-folder-form" type="submit" class="btn btn-success"
+                                                id="create-folder-btn">Create</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-lg-2">
                                 <% if(owner.username===user.username){ %>
+                                    <a type="button" class="btn btn-success btn-icon waves-effect waves-light"
+                                        data-toggle="modal" data-target="#add-to-folder">
+                                        <i class="icofont icofont-plus"></i>
+                                    </a>
                                     <a type="button" href="/<%= set.id %>/edit"
                                         class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
                                         data-placement="top" title="Edit">
@@ -201,8 +249,12 @@
                                         data-placement="top" title="Remove">
                                         <i class="icofont icofont-trash"></i>
                                     </a>
-
-                                    <% } %>
+                                    <% } else { %>
+                                        <a type="button" class="btn btn-success btn-icon waves-effect waves-light"
+                                            data-toggle="modal" data-target="#add-to-folder">
+                                            <i class="icofont icofont-plus"></i>
+                                        </a>
+                                        <% } %>
                             </div>
                         </div>
                     </div>
@@ -213,85 +265,88 @@
                                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
                                         data-interval="false">
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <!-- <img src="../../jpg/slide1.jpg" class="d-block w-100" alt="..."> -->
-                                                <div class="row col-lg-12">
-                                                    <div class="col-sm-3"></div>
-
-                                                    <!-- <div class="card mb-3"> -->
-                                                    <div class="flip-card">
-                                                        <div class="flip-card-inner">
-                                                            <div class="card flip-card-front">
-                                                                <p class="flip-card-text">
-                                                                    <%= cards[0].term %>
-                                                                </p>
-                                                            </div>
-                                                            <div class="card flip-card-back">
-                                                                <p class="flip-card-text">
-                                                                    <%= cards[0].definition %>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- </div> -->
+                                            <div class="row col-sm-12">
+                                                <div class="col-sm-2">
 
                                                 </div>
-                                            </div>
-                                            <% for(var i=1; i < cards.length; i++){ %>
-                                                <div class="carousel-item">
-                                                    <!-- <img src="../../jpg/slide1.jpg" class="d-block w-100" alt="..."> -->
-                                                    <div class="row col-lg-12">
-                                                        <div class="col-sm-3"></div>
-
-                                                        <!-- <div class="card mb-3"> -->
+                                                <div class="col-sm-8">
+                                                    <div class="carousel-item active">
                                                         <div class="flip-card">
-                                                            <div class="flip-card-inner">
+                                                            <div class="flip-card-inner card" style="height: 22rem;">
                                                                 <div class="card flip-card-front">
                                                                     <p class="flip-card-text">
-                                                                        <%= cards[i].term %>
+                                                                        <%= cards[0].term %>
                                                                     </p>
                                                                 </div>
                                                                 <div class="card flip-card-back">
                                                                     <p class="flip-card-text">
-                                                                        <%= cards[i].definition %>
+                                                                        <%= cards[0].definition %>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- </div> -->
 
                                                     </div>
+                                                    <% for(var i=1; i < cards.length; i++){ %>
+                                                        <div class="carousel-item">
+                                                            <div class="flip-card">
+                                                                <div class="flip-card-inner card"
+                                                                    style="height: 22rem;">
+                                                                    <div class="card flip-card-front">
+                                                                        <p class="flip-card-text">
+                                                                            <%= cards[i].term %>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="card flip-card-back">
+                                                                        <p class="flip-card-text">
+                                                                            <%= cards[i].definition %>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+
                                                 </div>
-                                                <% } %>
-                                                    <a class="carousel-control-prev" href="#carouselExampleControls"
-                                                        role="button" data-slide="prev">
-                                                        <span class="carousel-control-prev-icon"
-                                                            aria-hidden="true"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="carousel-control-next" href="#carouselExampleControls"
-                                                        role="button" data-slide="next">
-                                                        <span class="carousel-control-next-icon"
-                                                            aria-hidden="true"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
+                                                <div class="col-sm-2">
+
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-12 col-12 row">
+                                        <div class="col-lg-4 col-4"></div>
+                                        <div class="col-lg-2 col-2">
+                                            <button class="btn waves-effect waves-light btn-primary" id="prev-btn"
+                                                href="#carouselExampleControls" data-slide="prev"><i
+                                                    class="fa fa-arrow-left"></i></button>
+                                        </div>
+                                        <div class="col-lg-1 col-1 text-left" id="order"
+                                            style="margin: auto; padding-left: 0%; font-weight: 700; font-size: large;">
+
+                                        </div>
+                                        <div class="col-lg-1 col-1" style="float: right;">
+                                            <button class="btn waves-effect waves-light btn-primary" id="next-btn"
+                                                href="#carouselExampleControls" data-slide="next"><i
+                                                    class="fa fa-arrow-right"></i></button>
+                                        </div>
+                                        <div class="col-lg-4 col-4"></div>
                                     </div>
                                     <br>
                                     <h4 class="font-weight-bold">Terms in this set (<%= cards.length %>)</h4>
-
-
                                     <div class="card">
                                         <% for(var i=0; i < cards.length; i++){ %>
                                             <div class="card-block">
                                                 <div class="row col-sm-12">
-                                                    <div class="col-sm-12 col-xl-4">
-                                                        <p>
+                                                    <div class="col-sm-12 col-xl-4" style="margin: auto;">
+                                                        <p style="font-family: Arial, Helvetica, sans-serif;
+                                                        font-size: large;">
                                                             <%= cards[i].term %>
                                                         </p>
                                                     </div>
                                                     <div class="col-sm-12 col-xl-7">
-                                                        <p>
+                                                        <p style="font-family: Arial, Helvetica, sans-serif;
+                                                        font-size: large;">
                                                             <%= cards[i].definition %>
                                                         </p>
                                                     </div>
@@ -319,7 +374,60 @@
     </div>
     </div>
     </div>
+    <div class="modal fade" id="add-to-folder" tabindex="-1" role="dialog" aria-labelledby="add-to-folder"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-c-blue">
+                    <h3 class="modal-title text-white" id="exampleModalLabel">Add to folder</h3>
+                    <button type="button" class="close" id="add-to-folder-close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card d-flex">
+                        <div class="card-body align-items-center d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#create-folder-1"
+                                class="btn btn-success text-white create-new-folder-btn" data-dismiss="modal">+ CREATE A
+                                NEW
+                                FOLDER</a>
+                        </div>
+                    </div>
+                    <div id="add-to-folder-form">
+                        <% for(var i=0; i < folders.length; i++){ %>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-11">
+                                            <%= folders[i].title %>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="checkbox-fade fade-in-success">
+                                                <label>
+                                                    <input type="checkbox"
+                                                        value="<%= folders[i].title %>">
+                                                    <span class="cr">
+                                                        <i class="cr-icon icofont icofont-ui-check txt-success"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" form="add-to-folder-form" data-dismiss="modal" class="btn btn-primary"
+                        id="add-btn">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--[if lt IE 10]>
     <div class="ie-warning">
@@ -392,6 +500,7 @@
     <script type="text/javascript" src="../../js/script.min.js"></script>
     <script type="text/javascript" src="../../js/validate.js"></script>
     <script type="text/javascript" src="../../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../js/modal.js"></script>
     <script src="../../js/classie.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../js/modaleffects.js"></script>
 
@@ -402,7 +511,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-23581568-13');
     </script>
     <script src="../../js/rocket-loader.min.js" data-cf-settings="2d8d78e876b340f9029c575b-|49" defer=""></script>
@@ -412,6 +520,49 @@
                 $(this).toggleClass('flipped')
             }
         )
+
+        var total = '<%= cards.length %>';
+        var order = 1;
+        $('.search-1').on('click', function () {
+            $('.search-1').addClass('hidden');
+            $('.search-2').removeClass('hidden');
+        });
+        $('.search-close').on('click', function () {
+            $('.search-1').removeClass('hidden');
+            $('.search-2').addClass('hidden');
+        });
+        $('#next-btn').on('click', function () {
+            if (order == total) {
+                order = 1;
+            } else {
+                order++;
+            }
+            $('#order').text(`${order}/${total}`);
+        });
+        $('#prev-btn').on('click', function () {
+            if (order == 1) {
+                order = total;
+            } else {
+                order--;
+            }
+            $('#order').text(`${order}/${total}`);
+        });
+        $('#order').text(`${order}/${total}`);
+        $('#add-btn').on('click', function() {
+            var folders = [];
+            $('#add-to-folder-form :checked').each(function(){
+                folders.push($(this).val());
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/add-to-folder',
+                data: {
+                    folders: folders,
+                    setId: '<%= set.id %>',
+                    userId: '<%= user.id %>'
+                }
+            })
+        });
     </script>
 </body>
 

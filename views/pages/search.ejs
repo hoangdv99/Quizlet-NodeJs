@@ -1,0 +1,76 @@
+<div class="pcoded-content">
+
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="feather icon-file bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5><%= keyword %></h5>
+                        <span><%= sets.length %> sets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-body">
+                    <% if(sets.length === 0){ %>
+                        <p class="text-center" style="font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: 700;"
+                        >Sorry, we couldn't find any search results. </p>
+                    <% } else { %>
+                        <div class="row">
+                            <div class="col-sm-12">
+    
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Sets</h5>
+                                    </div>
+                                    <div class="row card-block">
+                                        <div class="col-md-12">
+                                            <ul class="list-view">
+                                                <% for(var i = 0; i < sets.length; i++){ %>
+                                                    <li>
+                                                        <div class="card list-view-media">
+                                                            <div class="card-block set-card">
+                                                                <div class="media">
+                                                                    <a class="media-left" href="/<%= owners[i].username %>/<%= sets[i].id %>">
+                                                                        <img class="media-object card-list-img"
+                                                                            src="../../jpg/set1.jpg"
+                                                                            alt="Generic placeholder image">
+                                                                    </a>
+                                                                    <div class="media-body">
+                                                                        <div class="col-xs-12">
+                                                                            <h6 class="d-inline-block">
+                                                                                <%= sets[i].title %></h6>
+                                                                            <label
+                                                                                class="label label-info"><%= countTerms[i] %> terms</label>
+                                                                        </div>
+                                                                        <div class="f-13 text-muted m-b-15">
+                                                                            created by <span><a class="font-weight-bold" href="/<%= owners[i].username %>/profile#created"><%= owners[i].username %></a></span>
+                                                                        </div>
+                                                                        <p><%= sets[i].description %></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

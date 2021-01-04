@@ -20,11 +20,11 @@
                     data-target="#exampleModal"><i class="icofont icofont-plus add-set-btn"></i></button>
                         <% if(owner.username===user.username){ %>
 
-                            <a type="button" href="/<%= folder.title %>/edit"
+                            <!-- <a type="button" href="/<%= folder.title %>/edit"
                                 class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip"
                                 data-placement="top" title="Edit">
                                 <i class="icofont icofont-edit"></i>
-                            </a>
+                            </a> -->
                             <a type="button" href="/folders/<%= folder.id%>/delete"
                                 onclick="return confirm('Are you sure to delete this folder?')"
                                 class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip"
@@ -48,7 +48,7 @@
                         <% for(var i=0; i < setsInFolder.length; i++){ %>
                             <div class="col-xl-6 col-dm-6">
                                 <div class="card list-view-media">
-                                    <div class="card-block">
+                                    <div class="card-block set-card">
                                         <div class="media">
                                             <a class="media-left" href="/<%= owner.username %>/<%= setsInFolder[i].id %>">
                                                 <img class="media-object card-list-img"
@@ -64,10 +64,11 @@
                                                     </a>                                                    
                                                 </div>
                                                 <div class="f-13 text-muted m-b-15">
-                                                    <%= setsInFolder[i].description %>
+                                                    created by <span><a class="font-weight-bold" href="/<%= owners[i].username %>/profile#created"><%= owners[i].username %></a></span>
                                                 </div>
+                                                <p><%= setsInFolder[i].description %></p>
                                                 <a href='/<%= owner.username %>/<%= setsInFolder[i].id %>'
-                                                    class="btn btn-success">View</a>
+                                                    class="btn btn-success">View Set</a>
                                                 <a href='/folders/<%= folder.id %>/<%= setsInFolder[i].id %>/remove' class="btn btn-danger">Remove</a>
                                             </div>
                                         </div>

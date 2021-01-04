@@ -21,12 +21,14 @@ module.exports = {
         var curUser = await sails.models.user.findOne({ username: req.signedCookies.user.username });
         var curUserSets = await sails.models.set.find({ user_id: curUser.id });
         var owner = await sails.models.user.findOne({id: folder.user_id });
-        var notInFolder = [], curUserSetsTitle = [], setInFolderTitle = [], notInFolderSets = [];
+        var notInFolder = [], curUserSetsTitle = [], setInFolderTitle = [], notInFolderSets = [], countTerms = [], owners = [];
         for(var i = 0; i < curUserSets.length; i++){
             curUserSetsTitle.push(curUserSets[i].title);
         }
         for (var i = 0; i < setsInFolder.sets.length; i++) {
             setInFolderTitle.push(setsInFolder.sets[i].title);
+            countTerms[i] = await sails.models.card.count({set_id: setsInFolder.sets[i].id});
+			owners[i] = await sails.models.user.findOne({id: setsInFolder.sets[i].user_id});
         }
 
         notInFolder = curUserSetsTitle.filter(object=>{
@@ -44,7 +46,9 @@ module.exports = {
             folder: folder,
             setsInFolder: setsInFolder.sets,
             curUserSets: curUserSets,
-            notInFolderSets: notInFolderSets
+            notInFolderSets: notInFolderSets,
+            countTerms: countTerms,
+            owners: owners
         });
     },
 
